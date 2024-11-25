@@ -1,0 +1,1120 @@
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PrISM_1_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PrISM_1_SaveConfig,"ax",%progbits
+  19              		.align	2
+  20              		.global	PrISM_1_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PrISM_1_SaveConfig, %function
+  24              	PrISM_1_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\PrISM_1_PM.c"
+   1:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * File Name: PrISM_1_PM.c
+   3:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Version 2.20
+   4:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+   5:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  This file provides Sleep/WakeUp APIs functionality of the PrISM component
+   7:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+   8:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Note:
+   9:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  10:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  17:.\Generated_Source\PSoC5/PrISM_1_PM.c **** #include "PrISM_1.h"
+  18:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  19:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  20:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /***************************************
+  21:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Local data allocation
+  22:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ***************************************/
+  23:.\Generated_Source\PSoC5/PrISM_1_PM.c **** static PrISM_1_BACKUP_STRUCT  PrISM_1_backup = 
+  24:.\Generated_Source\PSoC5/PrISM_1_PM.c **** {
+  25:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     /* enableState */
+  26:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     0u,
+  27:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     /* cr */
+  28:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+  29:.\Generated_Source\PSoC5/PrISM_1_PM.c ****        (((PrISM_1_GREATERTHAN_OR_EQUAL == PrISM_1_COMPARE0) ? \
+  30:.\Generated_Source\PSoC5/PrISM_1_PM.c ****                                                 PrISM_1_CTRL_COMPARE_TYPE0_GREATER_THAN_OR_EQUAL : 
+  31:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         ((PrISM_1_GREATERTHAN_OR_EQUAL == PrISM_1_COMPARE1) ? \
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/PrISM_1_PM.c ****                                                 PrISM_1_CTRL_COMPARE_TYPE1_GREATER_THAN_OR_EQUAL : 
+  33:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+  34:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     /* seed */    
+  35:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_SEED,
+  36:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     /* seed_copy */    
+  37:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_SEED,
+  38:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     /* polynom */
+  39:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_POLYNOM,
+  40:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #if(CY_UDB_V0)
+  41:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         /* density0 */
+  42:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_DENSITY0,
+  43:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         /* density1 */
+  44:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_DENSITY1,
+  45:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #endif /*End CY_UDB_V0*/
+  46:.\Generated_Source\PSoC5/PrISM_1_PM.c **** };
+  47:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  48:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  49:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /*******************************************************************************
+  50:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Function Name: PrISM_1_SaveConfig
+  51:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ********************************************************************************
+  52:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  53:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Summary:
+  54:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  Saves the current user configuration.
+  55:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  
+  56:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Parameters:  
+  57:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+  58:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  59:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Return: 
+  60:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+  61:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  62:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Global Variables:
+  63:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  PrISM_1_backup - modified when non-retention registers are saved.
+  64:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  65:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Reentrant:
+  66:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  No.
+  67:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  68:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC5/PrISM_1_PM.c **** void PrISM_1_SaveConfig(void) 
+  70:.\Generated_Source\PSoC5/PrISM_1_PM.c **** {
+  27              		.loc 1 70 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  71:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #if (CY_UDB_V0)
+  72:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+  73:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_backup.cr = PrISM_1_CONTROL_REG;
+  74:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+  75:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.seed = PrISM_1_ReadSeed();
+  76:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.seed_copy = CY_GET_REG8(PrISM_1_SEED_COPY_PTR);
+  77:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.polynom = PrISM_1_ReadPolynomial();
+  78:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.density0 = PrISM_1_ReadPulse0();
+  79:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.density1 = PrISM_1_ReadPulse1();
+  80:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #else /* CY_UDB_V1 */
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 3
+
+
+  81:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+  82:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_backup.cr = PrISM_1_CONTROL_REG;
+  35              		.loc 1 82 0
+  36 0002 074B     		ldr	r3, .L3
+  37 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  38 0006 074C     		ldr	r4, .L3+4
+  39 0008 6370     		strb	r3, [r4, #1]
+  83:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+  84:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.seed = PrISM_1_ReadSeed();
+  40              		.loc 1 84 0
+  41 000a FFF7FEFF 		bl	PrISM_1_ReadSeed
+  42              	.LVL0:
+  43 000e A070     		strb	r0, [r4, #2]
+  85:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.seed_copy = CY_GET_REG8(PrISM_1_SEED_COPY_PTR);
+  44              		.loc 1 85 0
+  45 0010 054B     		ldr	r3, .L3+8
+  46 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  47 0014 E370     		strb	r3, [r4, #3]
+  86:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_backup.polynom = PrISM_1_ReadPolynomial();
+  48              		.loc 1 86 0
+  49 0016 FFF7FEFF 		bl	PrISM_1_ReadPolynomial
+  50              	.LVL1:
+  51 001a 2071     		strb	r0, [r4, #4]
+  52 001c 10BD     		pop	{r4, pc}
+  53              	.L4:
+  54 001e 00BF     		.align	2
+  55              	.L3:
+  56 0020 79650040 		.word	1073767801
+  57 0024 00000000 		.word	.LANCHOR0
+  58 0028 49650040 		.word	1073767753
+  59              		.cfi_endproc
+  60              	.LFE0:
+  61              		.size	PrISM_1_SaveConfig, .-PrISM_1_SaveConfig
+  62              		.section	.text.PrISM_1_RestoreConfig,"ax",%progbits
+  63              		.align	2
+  64              		.global	PrISM_1_RestoreConfig
+  65              		.thumb
+  66              		.thumb_func
+  67              		.type	PrISM_1_RestoreConfig, %function
+  68              	PrISM_1_RestoreConfig:
+  69              	.LFB1:
+  87:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #endif  /* CY_UDB_V0 */
+  88:.\Generated_Source\PSoC5/PrISM_1_PM.c **** }
+  89:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  90:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+  91:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /*******************************************************************************
+  92:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Function Name: PrISM_1_RestoreConfig
+  93:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ********************************************************************************
+  94:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  95:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Summary:
+  96:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  Restores the current user configuration.
+  97:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+  98:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Parameters:  
+  99:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ 100:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 101:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Return: 
+ 102:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 4
+
+
+ 103:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 104:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Global Variables:
+ 105:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  PrISM_1_backup - used when non-retention registers are restored.
+ 106:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 107:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *******************************************************************************/
+ 108:.\Generated_Source\PSoC5/PrISM_1_PM.c **** void PrISM_1_RestoreConfig(void) 
+ 109:.\Generated_Source\PSoC5/PrISM_1_PM.c **** {
+  70              		.loc 1 109 0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74 0000 08B5     		push	{r3, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+ 110:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #if (CY_UDB_V0)
+ 111:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     
+ 112:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         uint8 enableInterrupts;
+ 113:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         
+ 114:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+ 115:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_CONTROL_REG = PrISM_1_backup.cr;
+ 116:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+ 117:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 118:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CY_SET_REG8(PrISM_1_SEED_COPY_PTR, PrISM_1_backup.seed_copy);
+ 119:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CY_SET_REG8(PrISM_1_SEED_PTR, PrISM_1_backup.seed);
+ 120:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_WritePolynomial(PrISM_1_backup.polynom);
+ 121:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_WritePulse0(PrISM_1_backup.density0);
+ 122:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_WritePulse1(PrISM_1_backup.density1);
+ 123:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         
+ 124:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         enableInterrupts = CyEnterCriticalSection();
+ 125:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         /* Set FIFO0_CLR bit to use FIFO0 as a simple one-byte buffer*/
+ 126:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CY_SET_REG8(PrISM_1_AUX_CONTROL_PTR, 
+ 127:.\Generated_Source\PSoC5/PrISM_1_PM.c ****                         CY_GET_REG8(PrISM_1_AUX_CONTROL_PTR) | PrISM_1_FIFO0_CLR);
+ 128:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CyExitCriticalSection(enableInterrupts);
+ 129:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 130:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #else   /* CY_UDB_V1 */
+ 131:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 132:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+ 133:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_CONTROL_REG = PrISM_1_backup.cr;
+  78              		.loc 1 133 0
+  79 0002 074B     		ldr	r3, .L7
+  80 0004 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+  81 0006 074A     		ldr	r2, .L7+4
+  82 0008 1170     		strb	r1, [r2]
+ 134:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+ 135:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 136:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CY_SET_REG8(PrISM_1_SEED_COPY_PTR, PrISM_1_backup.seed_copy);
+  83              		.loc 1 136 0
+  84 000a D978     		ldrb	r1, [r3, #3]	@ zero_extendqisi2
+  85 000c 303A     		subs	r2, r2, #48
+  86 000e 1170     		strb	r1, [r2]
+ 137:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         CY_SET_REG8(PrISM_1_SEED_PTR, PrISM_1_backup.seed);
+  87              		.loc 1 137 0
+  88 0010 9978     		ldrb	r1, [r3, #2]	@ zero_extendqisi2
+  89 0012 403A     		subs	r2, r2, #64
+  90 0014 1170     		strb	r1, [r2]
+ 138:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_WritePolynomial(PrISM_1_backup.polynom);
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 5
+
+
+  91              		.loc 1 138 0
+  92 0016 1879     		ldrb	r0, [r3, #4]	@ zero_extendqisi2
+  93 0018 FFF7FEFF 		bl	PrISM_1_WritePolynomial
+  94              	.LVL2:
+  95 001c 08BD     		pop	{r3, pc}
+  96              	.L8:
+  97 001e 00BF     		.align	2
+  98              	.L7:
+  99 0020 00000000 		.word	.LANCHOR0
+ 100 0024 79650040 		.word	1073767801
+ 101              		.cfi_endproc
+ 102              	.LFE1:
+ 103              		.size	PrISM_1_RestoreConfig, .-PrISM_1_RestoreConfig
+ 104              		.section	.text.PrISM_1_Sleep,"ax",%progbits
+ 105              		.align	2
+ 106              		.global	PrISM_1_Sleep
+ 107              		.thumb
+ 108              		.thumb_func
+ 109              		.type	PrISM_1_Sleep, %function
+ 110              	PrISM_1_Sleep:
+ 111              	.LFB2:
+ 139:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     
+ 140:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #endif  /* End CY_UDB_V0 */
+ 141:.\Generated_Source\PSoC5/PrISM_1_PM.c **** }
+ 142:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 143:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 144:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /*******************************************************************************
+ 145:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Function Name: PrISM_1_Sleep
+ 146:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ********************************************************************************
+ 147:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 148:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Summary:
+ 149:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  Stops and saves the user configuration
+ 150:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  
+ 151:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Parameters:  
+ 152:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ 153:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 154:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Return: 
+ 155:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ 156:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 157:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Global Variables:
+ 158:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  PrISM_1_backup - modified when non-retention registers are saved.
+ 159:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 160:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Reentrant:
+ 161:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  No.
+ 162:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 163:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *******************************************************************************/
+ 164:.\Generated_Source\PSoC5/PrISM_1_PM.c **** void PrISM_1_Sleep(void) 
+ 165:.\Generated_Source\PSoC5/PrISM_1_PM.c **** {
+ 112              		.loc 1 165 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116 0000 08B5     		push	{r3, lr}
+ 117              		.cfi_def_cfa_offset 8
+ 118              		.cfi_offset 3, -8
+ 119              		.cfi_offset 14, -4
+ 166:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #if(!PrISM_1_PULSE_TYPE_HARDCODED)
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 6
+
+
+ 167:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         if((PrISM_1_CONTROL_REG & PrISM_1_CTRL_ENABLE) != 0u) 
+ 120              		.loc 1 167 0
+ 121 0002 084B     		ldr	r3, .L13
+ 122 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 123 0006 13F0010F 		tst	r3, #1
+ 124 000a 03D0     		beq	.L10
+ 168:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         {
+ 169:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_backup.enableState = 1u;
+ 125              		.loc 1 169 0
+ 126 000c 0122     		movs	r2, #1
+ 127 000e 064B     		ldr	r3, .L13+4
+ 128 0010 1A70     		strb	r2, [r3]
+ 129 0012 02E0     		b	.L11
+ 130              	.L10:
+ 170:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         }
+ 171:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         else
+ 172:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         {
+ 173:.\Generated_Source\PSoC5/PrISM_1_PM.c ****             PrISM_1_backup.enableState = 0u;
+ 131              		.loc 1 173 0
+ 132 0014 0022     		movs	r2, #0
+ 133 0016 044B     		ldr	r3, .L13+4
+ 134 0018 1A70     		strb	r2, [r3]
+ 135              	.L11:
+ 174:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         }
+ 175:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     #endif /* End PrISM_1_PULSE_TYPE_HARDCODED */
+ 176:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_Stop();
+ 136              		.loc 1 176 0
+ 137 001a FFF7FEFF 		bl	PrISM_1_Stop
+ 138              	.LVL3:
+ 177:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_SaveConfig();
+ 139              		.loc 1 177 0
+ 140 001e FFF7FEFF 		bl	PrISM_1_SaveConfig
+ 141              	.LVL4:
+ 142 0022 08BD     		pop	{r3, pc}
+ 143              	.L14:
+ 144              		.align	2
+ 145              	.L13:
+ 146 0024 79650040 		.word	1073767801
+ 147 0028 00000000 		.word	.LANCHOR0
+ 148              		.cfi_endproc
+ 149              	.LFE2:
+ 150              		.size	PrISM_1_Sleep, .-PrISM_1_Sleep
+ 151              		.section	.text.PrISM_1_Wakeup,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	PrISM_1_Wakeup
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	PrISM_1_Wakeup, %function
+ 157              	PrISM_1_Wakeup:
+ 158              	.LFB3:
+ 178:.\Generated_Source\PSoC5/PrISM_1_PM.c **** }
+ 179:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 180:.\Generated_Source\PSoC5/PrISM_1_PM.c **** 
+ 181:.\Generated_Source\PSoC5/PrISM_1_PM.c **** /*******************************************************************************
+ 182:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Function Name: PrISM_1_Wakeup
+ 183:.\Generated_Source\PSoC5/PrISM_1_PM.c **** ********************************************************************************
+ 184:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 7
+
+
+ 185:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Summary:
+ 186:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  Restores and enables the user configuration
+ 187:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  
+ 188:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Parameters:  
+ 189:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ 190:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 191:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Return: 
+ 192:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  None.
+ 193:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 194:.\Generated_Source\PSoC5/PrISM_1_PM.c **** * Global Variables:
+ 195:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *  PrISM_1_backup - used when non-retention registers are restored.
+ 196:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *
+ 197:.\Generated_Source\PSoC5/PrISM_1_PM.c **** *******************************************************************************/
+ 198:.\Generated_Source\PSoC5/PrISM_1_PM.c **** void PrISM_1_Wakeup(void) 
+ 199:.\Generated_Source\PSoC5/PrISM_1_PM.c **** {
+ 159              		.loc 1 199 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163 0000 08B5     		push	{r3, lr}
+ 164              		.cfi_def_cfa_offset 8
+ 165              		.cfi_offset 3, -8
+ 166              		.cfi_offset 14, -4
+ 200:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     PrISM_1_RestoreConfig();
+ 167              		.loc 1 200 0
+ 168 0002 FFF7FEFF 		bl	PrISM_1_RestoreConfig
+ 169              	.LVL5:
+ 201:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     if(PrISM_1_backup.enableState != 0u)
+ 170              		.loc 1 201 0
+ 171 0006 034B     		ldr	r3, .L18
+ 172 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 173 000a 0BB1     		cbz	r3, .L15
+ 202:.\Generated_Source\PSoC5/PrISM_1_PM.c ****     {
+ 203:.\Generated_Source\PSoC5/PrISM_1_PM.c ****         PrISM_1_Enable();
+ 174              		.loc 1 203 0
+ 175 000c FFF7FEFF 		bl	PrISM_1_Enable
+ 176              	.LVL6:
+ 177              	.L15:
+ 178 0010 08BD     		pop	{r3, pc}
+ 179              	.L19:
+ 180 0012 00BF     		.align	2
+ 181              	.L18:
+ 182 0014 00000000 		.word	.LANCHOR0
+ 183              		.cfi_endproc
+ 184              	.LFE3:
+ 185              		.size	PrISM_1_Wakeup, .-PrISM_1_Wakeup
+ 186              		.data
+ 187              		.align	2
+ 188              		.set	.LANCHOR0,. + 0
+ 189              		.type	PrISM_1_backup, %object
+ 190              		.size	PrISM_1_backup, 5
+ 191              	PrISM_1_backup:
+ 192 0000 00       		.byte	0
+ 193 0001 00       		.byte	0
+ 194 0002 FF       		.byte	-1
+ 195 0003 FF       		.byte	-1
+ 196 0004 B8       		.byte	-72
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 8
+
+
+ 197 0005 000000   		.text
+ 198              	.Letext0:
+ 199              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 200              		.file 3 ".\\Generated_Source\\PSoC5\\PrISM_1.h"
+ 201              		.section	.debug_info,"",%progbits
+ 202              	.Ldebug_info0:
+ 203 0000 CD010000 		.4byte	0x1cd
+ 204 0004 0400     		.2byte	0x4
+ 205 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 206 000a 04       		.byte	0x4
+ 207 000b 01       		.uleb128 0x1
+ 208 000c 1E010000 		.4byte	.LASF28
+ 209 0010 01       		.byte	0x1
+ 210 0011 6A020000 		.4byte	.LASF29
+ 211 0015 E2010000 		.4byte	.LASF30
+ 212 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 213 001d 00000000 		.4byte	0
+ 214 0021 00000000 		.4byte	.Ldebug_line0
+ 215 0025 02       		.uleb128 0x2
+ 216 0026 04       		.byte	0x4
+ 217 0027 05       		.byte	0x5
+ 218 0028 696E7400 		.ascii	"int\000"
+ 219 002c 03       		.uleb128 0x3
+ 220 002d 04       		.byte	0x4
+ 221 002e 07       		.byte	0x7
+ 222 002f E9000000 		.4byte	.LASF0
+ 223 0033 03       		.uleb128 0x3
+ 224 0034 01       		.byte	0x1
+ 225 0035 06       		.byte	0x6
+ 226 0036 60000000 		.4byte	.LASF1
+ 227 003a 03       		.uleb128 0x3
+ 228 003b 01       		.byte	0x1
+ 229 003c 08       		.byte	0x8
+ 230 003d 6C000000 		.4byte	.LASF2
+ 231 0041 03       		.uleb128 0x3
+ 232 0042 02       		.byte	0x2
+ 233 0043 05       		.byte	0x5
+ 234 0044 2A020000 		.4byte	.LASF3
+ 235 0048 03       		.uleb128 0x3
+ 236 0049 02       		.byte	0x2
+ 237 004a 07       		.byte	0x7
+ 238 004b 0F000000 		.4byte	.LASF4
+ 239 004f 03       		.uleb128 0x3
+ 240 0050 04       		.byte	0x4
+ 241 0051 05       		.byte	0x5
+ 242 0052 4E020000 		.4byte	.LASF5
+ 243 0056 03       		.uleb128 0x3
+ 244 0057 04       		.byte	0x4
+ 245 0058 07       		.byte	0x7
+ 246 0059 7F000000 		.4byte	.LASF6
+ 247 005d 03       		.uleb128 0x3
+ 248 005e 08       		.byte	0x8
+ 249 005f 05       		.byte	0x5
+ 250 0060 D4010000 		.4byte	.LASF7
+ 251 0064 03       		.uleb128 0x3
+ 252 0065 08       		.byte	0x8
+ 253 0066 07       		.byte	0x7
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 9
+
+
+ 254 0067 F6000000 		.4byte	.LASF8
+ 255 006b 03       		.uleb128 0x3
+ 256 006c 04       		.byte	0x4
+ 257 006d 07       		.byte	0x7
+ 258 006e CB010000 		.4byte	.LASF9
+ 259 0072 03       		.uleb128 0x3
+ 260 0073 01       		.byte	0x1
+ 261 0074 08       		.byte	0x8
+ 262 0075 57020000 		.4byte	.LASF10
+ 263 0079 04       		.uleb128 0x4
+ 264 007a 43020000 		.4byte	.LASF13
+ 265 007e 02       		.byte	0x2
+ 266 007f 3801     		.2byte	0x138
+ 267 0081 3A000000 		.4byte	0x3a
+ 268 0085 03       		.uleb128 0x3
+ 269 0086 04       		.byte	0x4
+ 270 0087 04       		.byte	0x4
+ 271 0088 5A000000 		.4byte	.LASF11
+ 272 008c 03       		.uleb128 0x3
+ 273 008d 08       		.byte	0x8
+ 274 008e 04       		.byte	0x4
+ 275 008f CC000000 		.4byte	.LASF12
+ 276 0093 04       		.uleb128 0x4
+ 277 0094 7A000000 		.4byte	.LASF14
+ 278 0098 02       		.byte	0x2
+ 279 0099 E201     		.2byte	0x1e2
+ 280 009b 9F000000 		.4byte	0x9f
+ 281 009f 05       		.uleb128 0x5
+ 282 00a0 79000000 		.4byte	0x79
+ 283 00a4 06       		.uleb128 0x6
+ 284 00a5 05       		.byte	0x5
+ 285 00a6 03       		.byte	0x3
+ 286 00a7 33       		.byte	0x33
+ 287 00a8 E8000000 		.4byte	0xe8
+ 288 00ac 07       		.uleb128 0x7
+ 289 00ad DD000000 		.4byte	.LASF15
+ 290 00b1 03       		.byte	0x3
+ 291 00b2 35       		.byte	0x35
+ 292 00b3 79000000 		.4byte	0x79
+ 293 00b7 00       		.byte	0
+ 294 00b8 08       		.uleb128 0x8
+ 295 00b9 637200   		.ascii	"cr\000"
+ 296 00bc 03       		.byte	0x3
+ 297 00bd 37       		.byte	0x37
+ 298 00be 79000000 		.4byte	0x79
+ 299 00c2 01       		.byte	0x1
+ 300 00c3 07       		.uleb128 0x7
+ 301 00c4 49020000 		.4byte	.LASF16
+ 302 00c8 03       		.byte	0x3
+ 303 00c9 39       		.byte	0x39
+ 304 00ca 79000000 		.4byte	0x79
+ 305 00ce 02       		.byte	0x2
+ 306 00cf 07       		.uleb128 0x7
+ 307 00d0 D3000000 		.4byte	.LASF17
+ 308 00d4 03       		.byte	0x3
+ 309 00d5 3A       		.byte	0x3a
+ 310 00d6 79000000 		.4byte	0x79
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 10
+
+
+ 311 00da 03       		.byte	0x3
+ 312 00db 07       		.uleb128 0x7
+ 313 00dc AC010000 		.4byte	.LASF18
+ 314 00e0 03       		.byte	0x3
+ 315 00e1 3B       		.byte	0x3b
+ 316 00e2 79000000 		.4byte	0x79
+ 317 00e6 04       		.byte	0x4
+ 318 00e7 00       		.byte	0
+ 319 00e8 09       		.uleb128 0x9
+ 320 00e9 31000000 		.4byte	.LASF19
+ 321 00ed 03       		.byte	0x3
+ 322 00ee 40       		.byte	0x40
+ 323 00ef A4000000 		.4byte	0xa4
+ 324 00f3 0A       		.uleb128 0xa
+ 325 00f4 47000000 		.4byte	.LASF20
+ 326 00f8 01       		.byte	0x1
+ 327 00f9 45       		.byte	0x45
+ 328 00fa 00000000 		.4byte	.LFB0
+ 329 00fe 2C000000 		.4byte	.LFE0-.LFB0
+ 330 0102 01       		.uleb128 0x1
+ 331 0103 9C       		.byte	0x9c
+ 332 0104 1B010000 		.4byte	0x11b
+ 333 0108 0B       		.uleb128 0xb
+ 334 0109 0E000000 		.4byte	.LVL0
+ 335 010d 9B010000 		.4byte	0x19b
+ 336 0111 0B       		.uleb128 0xb
+ 337 0112 1A000000 		.4byte	.LVL1
+ 338 0116 A6010000 		.4byte	0x1a6
+ 339 011a 00       		.byte	0
+ 340 011b 0A       		.uleb128 0xa
+ 341 011c A9000000 		.4byte	.LASF21
+ 342 0120 01       		.byte	0x1
+ 343 0121 6C       		.byte	0x6c
+ 344 0122 00000000 		.4byte	.LFB1
+ 345 0126 28000000 		.4byte	.LFE1-.LFB1
+ 346 012a 01       		.uleb128 0x1
+ 347 012b 9C       		.byte	0x9c
+ 348 012c 3A010000 		.4byte	0x13a
+ 349 0130 0B       		.uleb128 0xb
+ 350 0131 1C000000 		.4byte	.LVL2
+ 351 0135 B1010000 		.4byte	0x1b1
+ 352 0139 00       		.byte	0
+ 353 013a 0A       		.uleb128 0xa
+ 354 013b 5C020000 		.4byte	.LASF22
+ 355 013f 01       		.byte	0x1
+ 356 0140 A4       		.byte	0xa4
+ 357 0141 00000000 		.4byte	.LFB2
+ 358 0145 2C000000 		.4byte	.LFE2-.LFB2
+ 359 0149 01       		.uleb128 0x1
+ 360 014a 9C       		.byte	0x9c
+ 361 014b 62010000 		.4byte	0x162
+ 362 014f 0B       		.uleb128 0xb
+ 363 0150 1E000000 		.4byte	.LVL3
+ 364 0154 C2010000 		.4byte	0x1c2
+ 365 0158 0B       		.uleb128 0xb
+ 366 0159 22000000 		.4byte	.LVL4
+ 367 015d F3000000 		.4byte	0xf3
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 11
+
+
+ 368 0161 00       		.byte	0
+ 369 0162 0A       		.uleb128 0xa
+ 370 0163 22000000 		.4byte	.LASF23
+ 371 0167 01       		.byte	0x1
+ 372 0168 C6       		.byte	0xc6
+ 373 0169 00000000 		.4byte	.LFB3
+ 374 016d 18000000 		.4byte	.LFE3-.LFB3
+ 375 0171 01       		.uleb128 0x1
+ 376 0172 9C       		.byte	0x9c
+ 377 0173 8A010000 		.4byte	0x18a
+ 378 0177 0B       		.uleb128 0xb
+ 379 0178 06000000 		.4byte	.LVL5
+ 380 017c 1B010000 		.4byte	0x11b
+ 381 0180 0B       		.uleb128 0xb
+ 382 0181 10000000 		.4byte	.LVL6
+ 383 0185 C9010000 		.4byte	0x1c9
+ 384 0189 00       		.byte	0
+ 385 018a 0C       		.uleb128 0xc
+ 386 018b 34020000 		.4byte	.LASF31
+ 387 018f 01       		.byte	0x1
+ 388 0190 17       		.byte	0x17
+ 389 0191 E8000000 		.4byte	0xe8
+ 390 0195 05       		.uleb128 0x5
+ 391 0196 03       		.byte	0x3
+ 392 0197 00000000 		.4byte	PrISM_1_backup
+ 393 019b 0D       		.uleb128 0xd
+ 394 019c 0D010000 		.4byte	.LASF24
+ 395 01a0 03       		.byte	0x3
+ 396 01a1 4B       		.byte	0x4b
+ 397 01a2 79000000 		.4byte	0x79
+ 398 01a6 0D       		.uleb128 0xd
+ 399 01a7 B4010000 		.4byte	.LASF25
+ 400 01ab 03       		.byte	0x3
+ 401 01ac 4D       		.byte	0x4d
+ 402 01ad 79000000 		.4byte	0x79
+ 403 01b1 0E       		.uleb128 0xe
+ 404 01b2 91000000 		.4byte	.LASF32
+ 405 01b6 03       		.byte	0x3
+ 406 01b7 4E       		.byte	0x4e
+ 407 01b8 C2010000 		.4byte	0x1c2
+ 408 01bc 0F       		.uleb128 0xf
+ 409 01bd 79000000 		.4byte	0x79
+ 410 01c1 00       		.byte	0
+ 411 01c2 10       		.uleb128 0x10
+ 412 01c3 BF000000 		.4byte	.LASF26
+ 413 01c7 03       		.byte	0x3
+ 414 01c8 48       		.byte	0x48
+ 415 01c9 10       		.uleb128 0x10
+ 416 01ca 00000000 		.4byte	.LASF27
+ 417 01ce 03       		.byte	0x3
+ 418 01cf 5A       		.byte	0x5a
+ 419 01d0 00       		.byte	0
+ 420              		.section	.debug_abbrev,"",%progbits
+ 421              	.Ldebug_abbrev0:
+ 422 0000 01       		.uleb128 0x1
+ 423 0001 11       		.uleb128 0x11
+ 424 0002 01       		.byte	0x1
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 12
+
+
+ 425 0003 25       		.uleb128 0x25
+ 426 0004 0E       		.uleb128 0xe
+ 427 0005 13       		.uleb128 0x13
+ 428 0006 0B       		.uleb128 0xb
+ 429 0007 03       		.uleb128 0x3
+ 430 0008 0E       		.uleb128 0xe
+ 431 0009 1B       		.uleb128 0x1b
+ 432 000a 0E       		.uleb128 0xe
+ 433 000b 55       		.uleb128 0x55
+ 434 000c 17       		.uleb128 0x17
+ 435 000d 11       		.uleb128 0x11
+ 436 000e 01       		.uleb128 0x1
+ 437 000f 10       		.uleb128 0x10
+ 438 0010 17       		.uleb128 0x17
+ 439 0011 00       		.byte	0
+ 440 0012 00       		.byte	0
+ 441 0013 02       		.uleb128 0x2
+ 442 0014 24       		.uleb128 0x24
+ 443 0015 00       		.byte	0
+ 444 0016 0B       		.uleb128 0xb
+ 445 0017 0B       		.uleb128 0xb
+ 446 0018 3E       		.uleb128 0x3e
+ 447 0019 0B       		.uleb128 0xb
+ 448 001a 03       		.uleb128 0x3
+ 449 001b 08       		.uleb128 0x8
+ 450 001c 00       		.byte	0
+ 451 001d 00       		.byte	0
+ 452 001e 03       		.uleb128 0x3
+ 453 001f 24       		.uleb128 0x24
+ 454 0020 00       		.byte	0
+ 455 0021 0B       		.uleb128 0xb
+ 456 0022 0B       		.uleb128 0xb
+ 457 0023 3E       		.uleb128 0x3e
+ 458 0024 0B       		.uleb128 0xb
+ 459 0025 03       		.uleb128 0x3
+ 460 0026 0E       		.uleb128 0xe
+ 461 0027 00       		.byte	0
+ 462 0028 00       		.byte	0
+ 463 0029 04       		.uleb128 0x4
+ 464 002a 16       		.uleb128 0x16
+ 465 002b 00       		.byte	0
+ 466 002c 03       		.uleb128 0x3
+ 467 002d 0E       		.uleb128 0xe
+ 468 002e 3A       		.uleb128 0x3a
+ 469 002f 0B       		.uleb128 0xb
+ 470 0030 3B       		.uleb128 0x3b
+ 471 0031 05       		.uleb128 0x5
+ 472 0032 49       		.uleb128 0x49
+ 473 0033 13       		.uleb128 0x13
+ 474 0034 00       		.byte	0
+ 475 0035 00       		.byte	0
+ 476 0036 05       		.uleb128 0x5
+ 477 0037 35       		.uleb128 0x35
+ 478 0038 00       		.byte	0
+ 479 0039 49       		.uleb128 0x49
+ 480 003a 13       		.uleb128 0x13
+ 481 003b 00       		.byte	0
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 13
+
+
+ 482 003c 00       		.byte	0
+ 483 003d 06       		.uleb128 0x6
+ 484 003e 13       		.uleb128 0x13
+ 485 003f 01       		.byte	0x1
+ 486 0040 0B       		.uleb128 0xb
+ 487 0041 0B       		.uleb128 0xb
+ 488 0042 3A       		.uleb128 0x3a
+ 489 0043 0B       		.uleb128 0xb
+ 490 0044 3B       		.uleb128 0x3b
+ 491 0045 0B       		.uleb128 0xb
+ 492 0046 01       		.uleb128 0x1
+ 493 0047 13       		.uleb128 0x13
+ 494 0048 00       		.byte	0
+ 495 0049 00       		.byte	0
+ 496 004a 07       		.uleb128 0x7
+ 497 004b 0D       		.uleb128 0xd
+ 498 004c 00       		.byte	0
+ 499 004d 03       		.uleb128 0x3
+ 500 004e 0E       		.uleb128 0xe
+ 501 004f 3A       		.uleb128 0x3a
+ 502 0050 0B       		.uleb128 0xb
+ 503 0051 3B       		.uleb128 0x3b
+ 504 0052 0B       		.uleb128 0xb
+ 505 0053 49       		.uleb128 0x49
+ 506 0054 13       		.uleb128 0x13
+ 507 0055 38       		.uleb128 0x38
+ 508 0056 0B       		.uleb128 0xb
+ 509 0057 00       		.byte	0
+ 510 0058 00       		.byte	0
+ 511 0059 08       		.uleb128 0x8
+ 512 005a 0D       		.uleb128 0xd
+ 513 005b 00       		.byte	0
+ 514 005c 03       		.uleb128 0x3
+ 515 005d 08       		.uleb128 0x8
+ 516 005e 3A       		.uleb128 0x3a
+ 517 005f 0B       		.uleb128 0xb
+ 518 0060 3B       		.uleb128 0x3b
+ 519 0061 0B       		.uleb128 0xb
+ 520 0062 49       		.uleb128 0x49
+ 521 0063 13       		.uleb128 0x13
+ 522 0064 38       		.uleb128 0x38
+ 523 0065 0B       		.uleb128 0xb
+ 524 0066 00       		.byte	0
+ 525 0067 00       		.byte	0
+ 526 0068 09       		.uleb128 0x9
+ 527 0069 16       		.uleb128 0x16
+ 528 006a 00       		.byte	0
+ 529 006b 03       		.uleb128 0x3
+ 530 006c 0E       		.uleb128 0xe
+ 531 006d 3A       		.uleb128 0x3a
+ 532 006e 0B       		.uleb128 0xb
+ 533 006f 3B       		.uleb128 0x3b
+ 534 0070 0B       		.uleb128 0xb
+ 535 0071 49       		.uleb128 0x49
+ 536 0072 13       		.uleb128 0x13
+ 537 0073 00       		.byte	0
+ 538 0074 00       		.byte	0
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 14
+
+
+ 539 0075 0A       		.uleb128 0xa
+ 540 0076 2E       		.uleb128 0x2e
+ 541 0077 01       		.byte	0x1
+ 542 0078 3F       		.uleb128 0x3f
+ 543 0079 19       		.uleb128 0x19
+ 544 007a 03       		.uleb128 0x3
+ 545 007b 0E       		.uleb128 0xe
+ 546 007c 3A       		.uleb128 0x3a
+ 547 007d 0B       		.uleb128 0xb
+ 548 007e 3B       		.uleb128 0x3b
+ 549 007f 0B       		.uleb128 0xb
+ 550 0080 27       		.uleb128 0x27
+ 551 0081 19       		.uleb128 0x19
+ 552 0082 11       		.uleb128 0x11
+ 553 0083 01       		.uleb128 0x1
+ 554 0084 12       		.uleb128 0x12
+ 555 0085 06       		.uleb128 0x6
+ 556 0086 40       		.uleb128 0x40
+ 557 0087 18       		.uleb128 0x18
+ 558 0088 9742     		.uleb128 0x2117
+ 559 008a 19       		.uleb128 0x19
+ 560 008b 01       		.uleb128 0x1
+ 561 008c 13       		.uleb128 0x13
+ 562 008d 00       		.byte	0
+ 563 008e 00       		.byte	0
+ 564 008f 0B       		.uleb128 0xb
+ 565 0090 898201   		.uleb128 0x4109
+ 566 0093 00       		.byte	0
+ 567 0094 11       		.uleb128 0x11
+ 568 0095 01       		.uleb128 0x1
+ 569 0096 31       		.uleb128 0x31
+ 570 0097 13       		.uleb128 0x13
+ 571 0098 00       		.byte	0
+ 572 0099 00       		.byte	0
+ 573 009a 0C       		.uleb128 0xc
+ 574 009b 34       		.uleb128 0x34
+ 575 009c 00       		.byte	0
+ 576 009d 03       		.uleb128 0x3
+ 577 009e 0E       		.uleb128 0xe
+ 578 009f 3A       		.uleb128 0x3a
+ 579 00a0 0B       		.uleb128 0xb
+ 580 00a1 3B       		.uleb128 0x3b
+ 581 00a2 0B       		.uleb128 0xb
+ 582 00a3 49       		.uleb128 0x49
+ 583 00a4 13       		.uleb128 0x13
+ 584 00a5 02       		.uleb128 0x2
+ 585 00a6 18       		.uleb128 0x18
+ 586 00a7 00       		.byte	0
+ 587 00a8 00       		.byte	0
+ 588 00a9 0D       		.uleb128 0xd
+ 589 00aa 2E       		.uleb128 0x2e
+ 590 00ab 00       		.byte	0
+ 591 00ac 3F       		.uleb128 0x3f
+ 592 00ad 19       		.uleb128 0x19
+ 593 00ae 03       		.uleb128 0x3
+ 594 00af 0E       		.uleb128 0xe
+ 595 00b0 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 15
+
+
+ 596 00b1 0B       		.uleb128 0xb
+ 597 00b2 3B       		.uleb128 0x3b
+ 598 00b3 0B       		.uleb128 0xb
+ 599 00b4 27       		.uleb128 0x27
+ 600 00b5 19       		.uleb128 0x19
+ 601 00b6 49       		.uleb128 0x49
+ 602 00b7 13       		.uleb128 0x13
+ 603 00b8 3C       		.uleb128 0x3c
+ 604 00b9 19       		.uleb128 0x19
+ 605 00ba 00       		.byte	0
+ 606 00bb 00       		.byte	0
+ 607 00bc 0E       		.uleb128 0xe
+ 608 00bd 2E       		.uleb128 0x2e
+ 609 00be 01       		.byte	0x1
+ 610 00bf 3F       		.uleb128 0x3f
+ 611 00c0 19       		.uleb128 0x19
+ 612 00c1 03       		.uleb128 0x3
+ 613 00c2 0E       		.uleb128 0xe
+ 614 00c3 3A       		.uleb128 0x3a
+ 615 00c4 0B       		.uleb128 0xb
+ 616 00c5 3B       		.uleb128 0x3b
+ 617 00c6 0B       		.uleb128 0xb
+ 618 00c7 27       		.uleb128 0x27
+ 619 00c8 19       		.uleb128 0x19
+ 620 00c9 3C       		.uleb128 0x3c
+ 621 00ca 19       		.uleb128 0x19
+ 622 00cb 01       		.uleb128 0x1
+ 623 00cc 13       		.uleb128 0x13
+ 624 00cd 00       		.byte	0
+ 625 00ce 00       		.byte	0
+ 626 00cf 0F       		.uleb128 0xf
+ 627 00d0 05       		.uleb128 0x5
+ 628 00d1 00       		.byte	0
+ 629 00d2 49       		.uleb128 0x49
+ 630 00d3 13       		.uleb128 0x13
+ 631 00d4 00       		.byte	0
+ 632 00d5 00       		.byte	0
+ 633 00d6 10       		.uleb128 0x10
+ 634 00d7 2E       		.uleb128 0x2e
+ 635 00d8 00       		.byte	0
+ 636 00d9 3F       		.uleb128 0x3f
+ 637 00da 19       		.uleb128 0x19
+ 638 00db 03       		.uleb128 0x3
+ 639 00dc 0E       		.uleb128 0xe
+ 640 00dd 3A       		.uleb128 0x3a
+ 641 00de 0B       		.uleb128 0xb
+ 642 00df 3B       		.uleb128 0x3b
+ 643 00e0 0B       		.uleb128 0xb
+ 644 00e1 27       		.uleb128 0x27
+ 645 00e2 19       		.uleb128 0x19
+ 646 00e3 3C       		.uleb128 0x3c
+ 647 00e4 19       		.uleb128 0x19
+ 648 00e5 00       		.byte	0
+ 649 00e6 00       		.byte	0
+ 650 00e7 00       		.byte	0
+ 651              		.section	.debug_aranges,"",%progbits
+ 652 0000 34000000 		.4byte	0x34
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 16
+
+
+ 653 0004 0200     		.2byte	0x2
+ 654 0006 00000000 		.4byte	.Ldebug_info0
+ 655 000a 04       		.byte	0x4
+ 656 000b 00       		.byte	0
+ 657 000c 0000     		.2byte	0
+ 658 000e 0000     		.2byte	0
+ 659 0010 00000000 		.4byte	.LFB0
+ 660 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 661 0018 00000000 		.4byte	.LFB1
+ 662 001c 28000000 		.4byte	.LFE1-.LFB1
+ 663 0020 00000000 		.4byte	.LFB2
+ 664 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 665 0028 00000000 		.4byte	.LFB3
+ 666 002c 18000000 		.4byte	.LFE3-.LFB3
+ 667 0030 00000000 		.4byte	0
+ 668 0034 00000000 		.4byte	0
+ 669              		.section	.debug_ranges,"",%progbits
+ 670              	.Ldebug_ranges0:
+ 671 0000 00000000 		.4byte	.LFB0
+ 672 0004 2C000000 		.4byte	.LFE0
+ 673 0008 00000000 		.4byte	.LFB1
+ 674 000c 28000000 		.4byte	.LFE1
+ 675 0010 00000000 		.4byte	.LFB2
+ 676 0014 2C000000 		.4byte	.LFE2
+ 677 0018 00000000 		.4byte	.LFB3
+ 678 001c 18000000 		.4byte	.LFE3
+ 679 0020 00000000 		.4byte	0
+ 680 0024 00000000 		.4byte	0
+ 681              		.section	.debug_line,"",%progbits
+ 682              	.Ldebug_line0:
+ 683 0000 B0000000 		.section	.debug_str,"MS",%progbits,1
+ 683      02005600 
+ 683      00000201 
+ 683      FB0E0D00 
+ 683      01010101 
+ 684              	.LASF27:
+ 685 0000 50724953 		.ascii	"PrISM_1_Enable\000"
+ 685      4D5F315F 
+ 685      456E6162 
+ 685      6C6500
+ 686              	.LASF4:
+ 687 000f 73686F72 		.ascii	"short unsigned int\000"
+ 687      7420756E 
+ 687      7369676E 
+ 687      65642069 
+ 687      6E7400
+ 688              	.LASF23:
+ 689 0022 50724953 		.ascii	"PrISM_1_Wakeup\000"
+ 689      4D5F315F 
+ 689      57616B65 
+ 689      757000
+ 690              	.LASF19:
+ 691 0031 50724953 		.ascii	"PrISM_1_BACKUP_STRUCT\000"
+ 691      4D5F315F 
+ 691      4241434B 
+ 691      55505F53 
+ 691      54525543 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 17
+
+
+ 692              	.LASF20:
+ 693 0047 50724953 		.ascii	"PrISM_1_SaveConfig\000"
+ 693      4D5F315F 
+ 693      53617665 
+ 693      436F6E66 
+ 693      696700
+ 694              	.LASF11:
+ 695 005a 666C6F61 		.ascii	"float\000"
+ 695      7400
+ 696              	.LASF1:
+ 697 0060 7369676E 		.ascii	"signed char\000"
+ 697      65642063 
+ 697      68617200 
+ 698              	.LASF2:
+ 699 006c 756E7369 		.ascii	"unsigned char\000"
+ 699      676E6564 
+ 699      20636861 
+ 699      7200
+ 700              	.LASF14:
+ 701 007a 72656738 		.ascii	"reg8\000"
+ 701      00
+ 702              	.LASF6:
+ 703 007f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 703      20756E73 
+ 703      69676E65 
+ 703      6420696E 
+ 703      7400
+ 704              	.LASF32:
+ 705 0091 50724953 		.ascii	"PrISM_1_WritePolynomial\000"
+ 705      4D5F315F 
+ 705      57726974 
+ 705      65506F6C 
+ 705      796E6F6D 
+ 706              	.LASF21:
+ 707 00a9 50724953 		.ascii	"PrISM_1_RestoreConfig\000"
+ 707      4D5F315F 
+ 707      52657374 
+ 707      6F726543 
+ 707      6F6E6669 
+ 708              	.LASF26:
+ 709 00bf 50724953 		.ascii	"PrISM_1_Stop\000"
+ 709      4D5F315F 
+ 709      53746F70 
+ 709      00
+ 710              	.LASF12:
+ 711 00cc 646F7562 		.ascii	"double\000"
+ 711      6C6500
+ 712              	.LASF17:
+ 713 00d3 73656564 		.ascii	"seed_copy\000"
+ 713      5F636F70 
+ 713      7900
+ 714              	.LASF15:
+ 715 00dd 656E6162 		.ascii	"enableState\000"
+ 715      6C655374 
+ 715      61746500 
+ 716              	.LASF0:
+ 717 00e9 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 18
+
+
+ 717      676E6564 
+ 717      20696E74 
+ 717      00
+ 718              	.LASF8:
+ 719 00f6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 719      206C6F6E 
+ 719      6720756E 
+ 719      7369676E 
+ 719      65642069 
+ 720              	.LASF24:
+ 721 010d 50724953 		.ascii	"PrISM_1_ReadSeed\000"
+ 721      4D5F315F 
+ 721      52656164 
+ 721      53656564 
+ 721      00
+ 722              	.LASF28:
+ 723 011e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 723      4320342E 
+ 723      392E3320 
+ 723      32303135 
+ 723      30333033 
+ 724 0151 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 724      20726576 
+ 724      6973696F 
+ 724      6E203232 
+ 724      31323230 
+ 725 0184 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 725      66756E63 
+ 725      74696F6E 
+ 725      2D736563 
+ 725      74696F6E 
+ 726              	.LASF18:
+ 727 01ac 706F6C79 		.ascii	"polynom\000"
+ 727      6E6F6D00 
+ 728              	.LASF25:
+ 729 01b4 50724953 		.ascii	"PrISM_1_ReadPolynomial\000"
+ 729      4D5F315F 
+ 729      52656164 
+ 729      506F6C79 
+ 729      6E6F6D69 
+ 730              	.LASF9:
+ 731 01cb 73697A65 		.ascii	"sizetype\000"
+ 731      74797065 
+ 731      00
+ 732              	.LASF7:
+ 733 01d4 6C6F6E67 		.ascii	"long long int\000"
+ 733      206C6F6E 
+ 733      6720696E 
+ 733      7400
+ 734              	.LASF30:
+ 735 01e2 4A3A5C50 		.ascii	"J:\\PSoC_Creator\\CY8CKIT-059\\CY8CKIT-059_Beacon\\"
+ 735      536F435F 
+ 735      43726561 
+ 735      746F725C 
+ 735      43593843 
+ 736 0211 43593843 		.ascii	"CY8CKIT-059_Beacon.cydsn\000"
+ 736      4B49542D 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccYXCf6g.s 			page 19
+
+
+ 736      3035395F 
+ 736      42656163 
+ 736      6F6E2E63 
+ 737              	.LASF3:
+ 738 022a 73686F72 		.ascii	"short int\000"
+ 738      7420696E 
+ 738      7400
+ 739              	.LASF31:
+ 740 0234 50724953 		.ascii	"PrISM_1_backup\000"
+ 740      4D5F315F 
+ 740      6261636B 
+ 740      757000
+ 741              	.LASF13:
+ 742 0243 75696E74 		.ascii	"uint8\000"
+ 742      3800
+ 743              	.LASF16:
+ 744 0249 73656564 		.ascii	"seed\000"
+ 744      00
+ 745              	.LASF5:
+ 746 024e 6C6F6E67 		.ascii	"long int\000"
+ 746      20696E74 
+ 746      00
+ 747              	.LASF10:
+ 748 0257 63686172 		.ascii	"char\000"
+ 748      00
+ 749              	.LASF22:
+ 750 025c 50724953 		.ascii	"PrISM_1_Sleep\000"
+ 750      4D5F315F 
+ 750      536C6565 
+ 750      7000
+ 751              	.LASF29:
+ 752 026a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PrISM_1_PM.c\000"
+ 752      6E657261 
+ 752      7465645F 
+ 752      536F7572 
+ 752      63655C50 
+ 753              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

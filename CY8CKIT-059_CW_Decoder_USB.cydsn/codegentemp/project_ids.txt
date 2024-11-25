@@ -1,0 +1,9 @@
+E:\PSoC_Creator\CY8CKIT-059\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydsn\CY8CKIT-059_CW_Decoder_USB.cyprj|1c992c0f-1684-446a-a16e-94a847836c10
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|dfe6e291-982b-46e1-a45b-0dcc34bcb858
+C:\Users\koseki\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|30aa8801-5a72-4c5a-bfb9-b71b86e7a816
+C:\Users\koseki\Documents\PSoC Creator\4.3\Downloads ( 4.3).cylib\Downloads ( 4.3).cyprj|fe80170c-00b0-4540-b71f-20316266c03b
+C:\Users\koseki\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|19c91a9e-d5fd-43bd-bb47-026851892c74
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|db3673d4-d2e3-4ba2-9930-813083607a02
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|08f20cd8-69eb-4e39-b0d7-9a423134431a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|47a64fcb-a044-4df9-a5de-edb9b95be89d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|1b1d5f98-b662-4cd7-9d72-a95ba0d26ac4

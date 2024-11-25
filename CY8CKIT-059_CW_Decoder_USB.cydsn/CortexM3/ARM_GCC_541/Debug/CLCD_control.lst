@@ -1,0 +1,1409 @@
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"CLCD_control.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Task_CLCD,"ax",%progbits
+  20              		.align	2
+  21              		.global	Task_CLCD
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Task_CLCD, %function
+  25              	Task_CLCD:
+  26              	.LFB65:
+  27              		.file 1 "CLCD_control.c"
+   1:CLCD_control.c **** /* ========================================
+   2:CLCD_control.c ****  *
+   3:CLCD_control.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:CLCD_control.c ****  * All Rights Reserved
+   5:CLCD_control.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:CLCD_control.c ****  *
+   7:CLCD_control.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:CLCD_control.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:CLCD_control.c ****  *
+  10:CLCD_control.c ****  * ========================================
+  11:CLCD_control.c **** */
+  12:CLCD_control.c **** 
+  13:CLCD_control.c **** /* PSoC5 */
+  14:CLCD_control.c **** #include <device.h>
+  15:CLCD_control.c **** #include <stdio.h>
+  16:CLCD_control.c **** #include <stdlib.h>
+  17:CLCD_control.c **** #include <math.h>
+  18:CLCD_control.c **** /* FreeRTOS */
+  19:CLCD_control.c **** #include "FreeRTOS.h"
+  20:CLCD_control.c **** #include "task.h"
+  21:CLCD_control.c **** #include "queue.h"
+  22:CLCD_control.c **** #include "semphr.h"
+  23:CLCD_control.c **** /* API */
+  24:CLCD_control.c **** #include "I2C_CLCD.h"
+  25:CLCD_control.c **** #include "rot.h"
+  26:CLCD_control.c **** //#include "key.h"
+  27:CLCD_control.c **** 
+  28:CLCD_control.c **** extern xQueueHandle xQueue_ROT;        /* Queue Data from Task_ROT(ROT_ENC_Handler) */
+  29:CLCD_control.c **** extern xQueueHandle xQueue_RXD;        /* Queue Data from Task_RADIO */
+  30:CLCD_control.c **** 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 2
+
+
+  31:CLCD_control.c **** extern xSemaphoreHandle xMutex_RX_BUF;     /* Mutex for RX Data Buffer */
+  32:CLCD_control.c **** 
+  33:CLCD_control.c **** /***************************************************************************
+  34:CLCD_control.c **** *	Task_CLCD
+  35:CLCD_control.c **** ****************************************************************************/
+  36:CLCD_control.c **** 
+  37:CLCD_control.c **** const uint8 pga_gain[] = {1u, 2u, 4u, 8u, 16u, 24u, 32u, 48u};
+  38:CLCD_control.c **** 
+  39:CLCD_control.c **** #define GAIN_MAX    sizeof pga_gain / sizeof pga_gain[0]
+  40:CLCD_control.c **** 
+  41:CLCD_control.c **** 
+  42:CLCD_control.c **** void Task_CLCD(void *pvParameters)
+  43:CLCD_control.c **** {
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 24
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 30B5     		push	{r4, r5, lr}
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38 0002 87B0     		sub	sp, sp, #28
+  39              		.cfi_def_cfa_offset 40
+  40              	.LVL1:
+  44:CLCD_control.c ****     /* Gain Control */
+  45:CLCD_control.c ****     int16 gain = 2;     /* init value x04 */
+  46:CLCD_control.c ****     int8  click;
+  47:CLCD_control.c ****     char str[20];
+  48:CLCD_control.c ****     const portTickType xDelay = 100 / portTICK_RATE_MS;
+  49:CLCD_control.c ****     
+  50:CLCD_control.c ****     /*                   "0123456789012345" */
+  51:CLCD_control.c ****     I2C_CLCD_Position(0u, 0u);
+  41              		.loc 1 51 0
+  42 0004 0021     		movs	r1, #0
+  43 0006 0846     		mov	r0, r1
+  44              	.LVL2:
+  45 0008 FFF7FEFF 		bl	I2C_CLCD_Position
+  46              	.LVL3:
+  52:CLCD_control.c ****     I2C_CLCD_PrintString("PGA Gain        ");
+  47              		.loc 1 52 0
+  48 000c 2348     		ldr	r0, .L9
+  49 000e FFF7FEFF 		bl	I2C_CLCD_PrintString
+  50              	.LVL4:
+  53:CLCD_control.c ****     I2C_CLCD_Position(1u, 0u);
+  51              		.loc 1 53 0
+  52 0012 0021     		movs	r1, #0
+  53 0014 0120     		movs	r0, #1
+  54 0016 FFF7FEFF 		bl	I2C_CLCD_Position
+  55              	.LVL5:
+  54:CLCD_control.c ****     I2C_CLCD_PrintString("                ");
+  56              		.loc 1 54 0
+  57 001a 2148     		ldr	r0, .L9+4
+  58 001c FFF7FEFF 		bl	I2C_CLCD_PrintString
+  59              	.LVL6:
+  55:CLCD_control.c **** 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 3
+
+
+  56:CLCD_control.c ****     /* Init. Gain Control */
+  57:CLCD_control.c ****     PGA_1_SetGain(pga_gain[gain]);
+  60              		.loc 1 57 0
+  61 0020 0420     		movs	r0, #4
+  62 0022 FFF7FEFF 		bl	PGA_1_SetGain
+  63              	.LVL7:
+  58:CLCD_control.c ****     I2C_CLCD_Position(1u, 0u);
+  64              		.loc 1 58 0
+  65 0026 0021     		movs	r1, #0
+  66 0028 0120     		movs	r0, #1
+  67 002a FFF7FEFF 		bl	I2C_CLCD_Position
+  68              	.LVL8:
+  59:CLCD_control.c ****     sprintf(str, "x%02d     ", pga_gain[gain]);
+  69              		.loc 1 59 0
+  70 002e 0422     		movs	r2, #4
+  71 0030 1C49     		ldr	r1, .L9+8
+  72 0032 6846     		mov	r0, sp
+  73 0034 FFF7FEFF 		bl	sprintf
+  74              	.LVL9:
+  60:CLCD_control.c ****     I2C_CLCD_PrintString(str);
+  75              		.loc 1 60 0
+  76 0038 6846     		mov	r0, sp
+  77 003a FFF7FEFF 		bl	I2C_CLCD_PrintString
+  78              	.LVL10:
+  45:CLCD_control.c ****     int8  click;
+  79              		.loc 1 45 0
+  80 003e 0224     		movs	r4, #2
+  81              	.LVL11:
+  82              	.L5:
+  61:CLCD_control.c **** 
+  62:CLCD_control.c ****     while(1)
+  63:CLCD_control.c ****     {
+  64:CLCD_control.c ****         /* Get click count of ROT */
+  65:CLCD_control.c ****         if (uxQueueMessagesWaiting(xQueue_ROT) > 0)
+  83              		.loc 1 65 0
+  84 0040 194B     		ldr	r3, .L9+12
+  85 0042 1868     		ldr	r0, [r3]
+  86 0044 FFF7FEFF 		bl	uxQueueMessagesWaiting
+  87              	.LVL12:
+  88 0048 18B3     		cbz	r0, .L2
+  66:CLCD_control.c ****         {
+  67:CLCD_control.c ****             xQueueReceive(xQueue_ROT, &click, 0);
+  89              		.loc 1 67 0
+  90 004a 0023     		movs	r3, #0
+  91 004c 1A46     		mov	r2, r3
+  92 004e 0DF11701 		add	r1, sp, #23
+  93 0052 1548     		ldr	r0, .L9+12
+  94 0054 0068     		ldr	r0, [r0]
+  95 0056 FFF7FEFF 		bl	xQueueGenericReceive
+  96              	.LVL13:
+  68:CLCD_control.c **** 
+  69:CLCD_control.c ****             /* the target PGA gain */
+  70:CLCD_control.c ****             gain += click ;
+  97              		.loc 1 70 0
+  98 005a 9DF91730 		ldrsb	r3, [sp, #23]
+  99 005e 1C44     		add	r4, r4, r3
+ 100              	.LVL14:
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 4
+
+
+ 101 0060 24B2     		sxth	r4, r4
+ 102              	.LVL15:
+  71:CLCD_control.c ****             if (gain < 0)
+ 103              		.loc 1 71 0
+ 104 0062 002C     		cmp	r4, #0
+ 105 0064 00DA     		bge	.L3
+  72:CLCD_control.c ****                 gain = 0;
+ 106              		.loc 1 72 0
+ 107 0066 0024     		movs	r4, #0
+ 108              	.LVL16:
+ 109              	.L3:
+  73:CLCD_control.c ****             if ((uint16)gain > (GAIN_MAX - 1))
+ 110              		.loc 1 73 0
+ 111 0068 A3B2     		uxth	r3, r4
+ 112 006a 072B     		cmp	r3, #7
+ 113 006c 00D9     		bls	.L4
+  74:CLCD_control.c ****                 gain = GAIN_MAX - 1;
+ 114              		.loc 1 74 0
+ 115 006e 0724     		movs	r4, #7
+ 116              	.LVL17:
+ 117              	.L4:
+  75:CLCD_control.c ****             /*set PGA gain*/
+  76:CLCD_control.c ****             PGA_1_SetGain(pga_gain[gain]);
+ 118              		.loc 1 76 0
+ 119 0070 0E4B     		ldr	r3, .L9+16
+ 120 0072 1D5D     		ldrb	r5, [r3, r4]	@ zero_extendqisi2
+ 121 0074 2846     		mov	r0, r5
+ 122 0076 FFF7FEFF 		bl	PGA_1_SetGain
+ 123              	.LVL18:
+  77:CLCD_control.c **** 
+  78:CLCD_control.c ****             /* PGA Gain */
+  79:CLCD_control.c ****             I2C_CLCD_Position(1u, 0u);
+ 124              		.loc 1 79 0
+ 125 007a 0021     		movs	r1, #0
+ 126 007c 0120     		movs	r0, #1
+ 127 007e FFF7FEFF 		bl	I2C_CLCD_Position
+ 128              	.LVL19:
+  80:CLCD_control.c ****             sprintf(str, "x%02d     ", pga_gain[gain]);
+ 129              		.loc 1 80 0
+ 130 0082 2A46     		mov	r2, r5
+ 131 0084 0749     		ldr	r1, .L9+8
+ 132 0086 6846     		mov	r0, sp
+ 133 0088 FFF7FEFF 		bl	sprintf
+ 134              	.LVL20:
+  81:CLCD_control.c ****             I2C_CLCD_PrintString(str);
+ 135              		.loc 1 81 0
+ 136 008c 6846     		mov	r0, sp
+ 137 008e FFF7FEFF 		bl	I2C_CLCD_PrintString
+ 138              	.LVL21:
+ 139              	.L2:
+  82:CLCD_control.c ****         }
+  83:CLCD_control.c ****         /* sleep for 100ms */
+  84:CLCD_control.c ****         vTaskDelay(xDelay);
+ 140              		.loc 1 84 0
+ 141 0092 6420     		movs	r0, #100
+ 142 0094 FFF7FEFF 		bl	vTaskDelay
+ 143              	.LVL22:
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 5
+
+
+  85:CLCD_control.c ****     }
+ 144              		.loc 1 85 0
+ 145 0098 D2E7     		b	.L5
+ 146              	.L10:
+ 147 009a 00BF     		.align	2
+ 148              	.L9:
+ 149 009c 00000000 		.word	.LC0
+ 150 00a0 14000000 		.word	.LC1
+ 151 00a4 28000000 		.word	.LC2
+ 152 00a8 00000000 		.word	xQueue_ROT
+ 153 00ac 00000000 		.word	.LANCHOR0
+ 154              		.cfi_endproc
+ 155              	.LFE65:
+ 156              		.size	Task_CLCD, .-Task_CLCD
+ 157              		.global	pga_gain
+ 158              		.section	.rodata
+ 159              		.align	2
+ 160              		.set	.LANCHOR0,. + 0
+ 161              		.type	pga_gain, %object
+ 162              		.size	pga_gain, 8
+ 163              	pga_gain:
+ 164 0000 01       		.byte	1
+ 165 0001 02       		.byte	2
+ 166 0002 04       		.byte	4
+ 167 0003 08       		.byte	8
+ 168 0004 10       		.byte	16
+ 169 0005 18       		.byte	24
+ 170 0006 20       		.byte	32
+ 171 0007 30       		.byte	48
+ 172              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 173              		.align	2
+ 174              	.LC0:
+ 175 0000 50474120 		.ascii	"PGA Gain        \000"
+ 175      4761696E 
+ 175      20202020 
+ 175      20202020 
+ 175      00
+ 176 0011 000000   		.space	3
+ 177              	.LC1:
+ 178 0014 20202020 		.ascii	"                \000"
+ 178      20202020 
+ 178      20202020 
+ 178      20202020 
+ 178      00
+ 179 0025 000000   		.space	3
+ 180              	.LC2:
+ 181 0028 78253032 		.ascii	"x%02d     \000"
+ 181      64202020 
+ 181      202000
+ 182              		.text
+ 183              	.Letext0:
+ 184              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 185              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 186              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 187              		.file 5 "..\\FreeRTOS/portmacro.h"
+ 188              		.file 6 "..\\FreeRTOS/queue.h"
+ 189              		.file 7 "..\\CMSIS_DSP_LIB\\Include/core_cm3.h"
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 6
+
+
+ 190              		.file 8 "..\\API/I2C_CLCD.h"
+ 191              		.file 9 "Generated_Source\\PSoC5/PGA_1.h"
+ 192              		.file 10 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4
+ 193              		.file 11 "..\\FreeRTOS/task.h"
+ 194              		.section	.debug_info,"",%progbits
+ 195              	.Ldebug_info0:
+ 196 0000 6B030000 		.4byte	0x36b
+ 197 0004 0400     		.2byte	0x4
+ 198 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 199 000a 04       		.byte	0x4
+ 200 000b 01       		.uleb128 0x1
+ 201 000c 57000000 		.4byte	.LASF38
+ 202 0010 0C       		.byte	0xc
+ 203 0011 32010000 		.4byte	.LASF39
+ 204 0015 3E020000 		.4byte	.LASF40
+ 205 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 206 001d 00000000 		.4byte	0
+ 207 0021 00000000 		.4byte	.Ldebug_line0
+ 208 0025 02       		.uleb128 0x2
+ 209 0026 01       		.byte	0x1
+ 210 0027 06       		.byte	0x6
+ 211 0028 32020000 		.4byte	.LASF0
+ 212 002c 02       		.uleb128 0x2
+ 213 002d 01       		.byte	0x1
+ 214 002e 08       		.byte	0x8
+ 215 002f 49000000 		.4byte	.LASF1
+ 216 0033 02       		.uleb128 0x2
+ 217 0034 02       		.byte	0x2
+ 218 0035 05       		.byte	0x5
+ 219 0036 EE010000 		.4byte	.LASF2
+ 220 003a 02       		.uleb128 0x2
+ 221 003b 02       		.byte	0x2
+ 222 003c 07       		.byte	0x7
+ 223 003d 12010000 		.4byte	.LASF3
+ 224 0041 03       		.uleb128 0x3
+ 225 0042 14000000 		.4byte	.LASF5
+ 226 0046 02       		.byte	0x2
+ 227 0047 3F       		.byte	0x3f
+ 228 0048 4C000000 		.4byte	0x4c
+ 229 004c 02       		.uleb128 0x2
+ 230 004d 04       		.byte	0x4
+ 231 004e 05       		.byte	0x5
+ 232 004f 12020000 		.4byte	.LASF4
+ 233 0053 03       		.uleb128 0x3
+ 234 0054 63010000 		.4byte	.LASF6
+ 235 0058 02       		.byte	0x2
+ 236 0059 41       		.byte	0x41
+ 237 005a 5E000000 		.4byte	0x5e
+ 238 005e 02       		.uleb128 0x2
+ 239 005f 04       		.byte	0x4
+ 240 0060 07       		.byte	0x7
+ 241 0061 EB000000 		.4byte	.LASF7
+ 242 0065 02       		.uleb128 0x2
+ 243 0066 08       		.byte	0x8
+ 244 0067 05       		.byte	0x5
+ 245 0068 CE010000 		.4byte	.LASF8
+ 246 006c 02       		.uleb128 0x2
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 7
+
+
+ 247 006d 08       		.byte	0x8
+ 248 006e 07       		.byte	0x7
+ 249 006f 91010000 		.4byte	.LASF9
+ 250 0073 04       		.uleb128 0x4
+ 251 0074 04       		.byte	0x4
+ 252 0075 05       		.byte	0x5
+ 253 0076 696E7400 		.ascii	"int\000"
+ 254 007a 02       		.uleb128 0x2
+ 255 007b 04       		.byte	0x4
+ 256 007c 07       		.byte	0x7
+ 257 007d 84010000 		.4byte	.LASF10
+ 258 0081 03       		.uleb128 0x3
+ 259 0082 B6010000 		.4byte	.LASF11
+ 260 0086 03       		.byte	0x3
+ 261 0087 2C       		.byte	0x2c
+ 262 0088 41000000 		.4byte	0x41
+ 263 008c 03       		.uleb128 0x3
+ 264 008d 09020000 		.4byte	.LASF12
+ 265 0091 03       		.byte	0x3
+ 266 0092 30       		.byte	0x30
+ 267 0093 53000000 		.4byte	0x53
+ 268 0097 05       		.uleb128 0x5
+ 269 0098 03020000 		.4byte	.LASF13
+ 270 009c 04       		.byte	0x4
+ 271 009d 3801     		.2byte	0x138
+ 272 009f 2C000000 		.4byte	0x2c
+ 273 00a3 05       		.uleb128 0x5
+ 274 00a4 6E010000 		.4byte	.LASF14
+ 275 00a8 04       		.byte	0x4
+ 276 00a9 3901     		.2byte	0x139
+ 277 00ab 3A000000 		.4byte	0x3a
+ 278 00af 05       		.uleb128 0x5
+ 279 00b0 75010000 		.4byte	.LASF15
+ 280 00b4 04       		.byte	0x4
+ 281 00b5 3B01     		.2byte	0x13b
+ 282 00b7 25000000 		.4byte	0x25
+ 283 00bb 05       		.uleb128 0x5
+ 284 00bc E5000000 		.4byte	.LASF16
+ 285 00c0 04       		.byte	0x4
+ 286 00c1 3C01     		.2byte	0x13c
+ 287 00c3 33000000 		.4byte	0x33
+ 288 00c7 02       		.uleb128 0x2
+ 289 00c8 04       		.byte	0x4
+ 290 00c9 04       		.byte	0x4
+ 291 00ca 31000000 		.4byte	.LASF17
+ 292 00ce 02       		.uleb128 0x2
+ 293 00cf 08       		.byte	0x8
+ 294 00d0 04       		.byte	0x4
+ 295 00d1 47010000 		.4byte	.LASF18
+ 296 00d5 02       		.uleb128 0x2
+ 297 00d6 01       		.byte	0x1
+ 298 00d7 08       		.byte	0x8
+ 299 00d8 DC010000 		.4byte	.LASF19
+ 300 00dc 02       		.uleb128 0x2
+ 301 00dd 08       		.byte	0x8
+ 302 00de 04       		.byte	0x4
+ 303 00df 26020000 		.4byte	.LASF20
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 8
+
+
+ 304 00e3 02       		.uleb128 0x2
+ 305 00e4 04       		.byte	0x4
+ 306 00e5 07       		.byte	0x7
+ 307 00e6 BE010000 		.4byte	.LASF21
+ 308 00ea 06       		.uleb128 0x6
+ 309 00eb 04       		.byte	0x4
+ 310 00ec 03       		.uleb128 0x3
+ 311 00ed 96020000 		.4byte	.LASF22
+ 312 00f1 05       		.byte	0x5
+ 313 00f2 62       		.byte	0x62
+ 314 00f3 4C000000 		.4byte	0x4c
+ 315 00f7 03       		.uleb128 0x3
+ 316 00f8 09000000 		.4byte	.LASF23
+ 317 00fc 05       		.byte	0x5
+ 318 00fd 69       		.byte	0x69
+ 319 00fe 8C000000 		.4byte	0x8c
+ 320 0102 03       		.uleb128 0x3
+ 321 0103 1E000000 		.4byte	.LASF24
+ 322 0107 06       		.byte	0x6
+ 323 0108 58       		.byte	0x58
+ 324 0109 EA000000 		.4byte	0xea
+ 325 010d 07       		.uleb128 0x7
+ 326 010e 7A010000 		.4byte	.LASF41
+ 327 0112 01       		.byte	0x1
+ 328 0113 2A       		.byte	0x2a
+ 329 0114 00000000 		.4byte	.LFB65
+ 330 0118 B0000000 		.4byte	.LFE65-.LFB65
+ 331 011c 01       		.uleb128 0x1
+ 332 011d 9C       		.byte	0x9c
+ 333 011e C2020000 		.4byte	0x2c2
+ 334 0122 08       		.uleb128 0x8
+ 335 0123 E1010000 		.4byte	.LASF42
+ 336 0127 01       		.byte	0x1
+ 337 0128 2A       		.byte	0x2a
+ 338 0129 EA000000 		.4byte	0xea
+ 339 012d 00000000 		.4byte	.LLST0
+ 340 0131 09       		.uleb128 0x9
+ 341 0132 2C000000 		.4byte	.LASF25
+ 342 0136 01       		.byte	0x1
+ 343 0137 2D       		.byte	0x2d
+ 344 0138 BB000000 		.4byte	0xbb
+ 345 013c 21000000 		.4byte	.LLST1
+ 346 0140 0A       		.uleb128 0xa
+ 347 0141 41010000 		.4byte	.LASF26
+ 348 0145 01       		.byte	0x1
+ 349 0146 2E       		.byte	0x2e
+ 350 0147 AF000000 		.4byte	0xaf
+ 351 014b 02       		.uleb128 0x2
+ 352 014c 91       		.byte	0x91
+ 353 014d 6F       		.sleb128 -17
+ 354 014e 0B       		.uleb128 0xb
+ 355 014f 73747200 		.ascii	"str\000"
+ 356 0153 01       		.byte	0x1
+ 357 0154 2F       		.byte	0x2f
+ 358 0155 C2020000 		.4byte	0x2c2
+ 359 0159 02       		.uleb128 0x2
+ 360 015a 91       		.byte	0x91
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 9
+
+
+ 361 015b 58       		.sleb128 -40
+ 362 015c 0C       		.uleb128 0xc
+ 363 015d C7010000 		.4byte	.LASF27
+ 364 0161 01       		.byte	0x1
+ 365 0162 30       		.byte	0x30
+ 366 0163 D2020000 		.4byte	0x2d2
+ 367 0167 64       		.byte	0x64
+ 368 0168 0D       		.uleb128 0xd
+ 369 0169 0C000000 		.4byte	.LVL3
+ 370 016d 1E030000 		.4byte	0x31e
+ 371 0171 80010000 		.4byte	0x180
+ 372 0175 0E       		.uleb128 0xe
+ 373 0176 01       		.uleb128 0x1
+ 374 0177 50       		.byte	0x50
+ 375 0178 01       		.uleb128 0x1
+ 376 0179 30       		.byte	0x30
+ 377 017a 0E       		.uleb128 0xe
+ 378 017b 01       		.uleb128 0x1
+ 379 017c 51       		.byte	0x51
+ 380 017d 01       		.uleb128 0x1
+ 381 017e 30       		.byte	0x30
+ 382 017f 00       		.byte	0
+ 383 0180 0D       		.uleb128 0xd
+ 384 0181 12000000 		.4byte	.LVL4
+ 385 0185 29030000 		.4byte	0x329
+ 386 0189 97010000 		.4byte	0x197
+ 387 018d 0E       		.uleb128 0xe
+ 388 018e 01       		.uleb128 0x1
+ 389 018f 50       		.byte	0x50
+ 390 0190 05       		.uleb128 0x5
+ 391 0191 03       		.byte	0x3
+ 392 0192 00000000 		.4byte	.LC0
+ 393 0196 00       		.byte	0
+ 394 0197 0D       		.uleb128 0xd
+ 395 0198 1A000000 		.4byte	.LVL5
+ 396 019c 1E030000 		.4byte	0x31e
+ 397 01a0 AF010000 		.4byte	0x1af
+ 398 01a4 0E       		.uleb128 0xe
+ 399 01a5 01       		.uleb128 0x1
+ 400 01a6 50       		.byte	0x50
+ 401 01a7 01       		.uleb128 0x1
+ 402 01a8 31       		.byte	0x31
+ 403 01a9 0E       		.uleb128 0xe
+ 404 01aa 01       		.uleb128 0x1
+ 405 01ab 51       		.byte	0x51
+ 406 01ac 01       		.uleb128 0x1
+ 407 01ad 30       		.byte	0x30
+ 408 01ae 00       		.byte	0
+ 409 01af 0D       		.uleb128 0xd
+ 410 01b0 20000000 		.4byte	.LVL6
+ 411 01b4 29030000 		.4byte	0x329
+ 412 01b8 C6010000 		.4byte	0x1c6
+ 413 01bc 0E       		.uleb128 0xe
+ 414 01bd 01       		.uleb128 0x1
+ 415 01be 50       		.byte	0x50
+ 416 01bf 05       		.uleb128 0x5
+ 417 01c0 03       		.byte	0x3
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 10
+
+
+ 418 01c1 14000000 		.4byte	.LC1
+ 419 01c5 00       		.byte	0
+ 420 01c6 0D       		.uleb128 0xd
+ 421 01c7 26000000 		.4byte	.LVL7
+ 422 01cb 34030000 		.4byte	0x334
+ 423 01cf D9010000 		.4byte	0x1d9
+ 424 01d3 0E       		.uleb128 0xe
+ 425 01d4 01       		.uleb128 0x1
+ 426 01d5 50       		.byte	0x50
+ 427 01d6 01       		.uleb128 0x1
+ 428 01d7 34       		.byte	0x34
+ 429 01d8 00       		.byte	0
+ 430 01d9 0D       		.uleb128 0xd
+ 431 01da 2E000000 		.4byte	.LVL8
+ 432 01de 1E030000 		.4byte	0x31e
+ 433 01e2 F1010000 		.4byte	0x1f1
+ 434 01e6 0E       		.uleb128 0xe
+ 435 01e7 01       		.uleb128 0x1
+ 436 01e8 50       		.byte	0x50
+ 437 01e9 01       		.uleb128 0x1
+ 438 01ea 31       		.byte	0x31
+ 439 01eb 0E       		.uleb128 0xe
+ 440 01ec 01       		.uleb128 0x1
+ 441 01ed 51       		.byte	0x51
+ 442 01ee 01       		.uleb128 0x1
+ 443 01ef 30       		.byte	0x30
+ 444 01f0 00       		.byte	0
+ 445 01f1 0D       		.uleb128 0xd
+ 446 01f2 38000000 		.4byte	.LVL9
+ 447 01f6 3F030000 		.4byte	0x33f
+ 448 01fa 13020000 		.4byte	0x213
+ 449 01fe 0E       		.uleb128 0xe
+ 450 01ff 01       		.uleb128 0x1
+ 451 0200 50       		.byte	0x50
+ 452 0201 02       		.uleb128 0x2
+ 453 0202 7D       		.byte	0x7d
+ 454 0203 00       		.sleb128 0
+ 455 0204 0E       		.uleb128 0xe
+ 456 0205 01       		.uleb128 0x1
+ 457 0206 51       		.byte	0x51
+ 458 0207 05       		.uleb128 0x5
+ 459 0208 03       		.byte	0x3
+ 460 0209 28000000 		.4byte	.LC2
+ 461 020d 0E       		.uleb128 0xe
+ 462 020e 01       		.uleb128 0x1
+ 463 020f 52       		.byte	0x52
+ 464 0210 01       		.uleb128 0x1
+ 465 0211 34       		.byte	0x34
+ 466 0212 00       		.byte	0
+ 467 0213 0D       		.uleb128 0xd
+ 468 0214 3E000000 		.4byte	.LVL10
+ 469 0218 29030000 		.4byte	0x329
+ 470 021c 27020000 		.4byte	0x227
+ 471 0220 0E       		.uleb128 0xe
+ 472 0221 01       		.uleb128 0x1
+ 473 0222 50       		.byte	0x50
+ 474 0223 02       		.uleb128 0x2
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 11
+
+
+ 475 0224 7D       		.byte	0x7d
+ 476 0225 00       		.sleb128 0
+ 477 0226 00       		.byte	0
+ 478 0227 0F       		.uleb128 0xf
+ 479 0228 48000000 		.4byte	.LVL12
+ 480 022c 4A030000 		.4byte	0x34a
+ 481 0230 0D       		.uleb128 0xd
+ 482 0231 5A000000 		.4byte	.LVL13
+ 483 0235 56030000 		.4byte	0x356
+ 484 0239 4E020000 		.4byte	0x24e
+ 485 023d 0E       		.uleb128 0xe
+ 486 023e 01       		.uleb128 0x1
+ 487 023f 51       		.byte	0x51
+ 488 0240 02       		.uleb128 0x2
+ 489 0241 91       		.byte	0x91
+ 490 0242 6F       		.sleb128 -17
+ 491 0243 0E       		.uleb128 0xe
+ 492 0244 01       		.uleb128 0x1
+ 493 0245 52       		.byte	0x52
+ 494 0246 01       		.uleb128 0x1
+ 495 0247 30       		.byte	0x30
+ 496 0248 0E       		.uleb128 0xe
+ 497 0249 01       		.uleb128 0x1
+ 498 024a 53       		.byte	0x53
+ 499 024b 01       		.uleb128 0x1
+ 500 024c 30       		.byte	0x30
+ 501 024d 00       		.byte	0
+ 502 024e 0D       		.uleb128 0xd
+ 503 024f 7A000000 		.4byte	.LVL18
+ 504 0253 34030000 		.4byte	0x334
+ 505 0257 62020000 		.4byte	0x262
+ 506 025b 0E       		.uleb128 0xe
+ 507 025c 01       		.uleb128 0x1
+ 508 025d 50       		.byte	0x50
+ 509 025e 02       		.uleb128 0x2
+ 510 025f 75       		.byte	0x75
+ 511 0260 00       		.sleb128 0
+ 512 0261 00       		.byte	0
+ 513 0262 0D       		.uleb128 0xd
+ 514 0263 82000000 		.4byte	.LVL19
+ 515 0267 1E030000 		.4byte	0x31e
+ 516 026b 7A020000 		.4byte	0x27a
+ 517 026f 0E       		.uleb128 0xe
+ 518 0270 01       		.uleb128 0x1
+ 519 0271 50       		.byte	0x50
+ 520 0272 01       		.uleb128 0x1
+ 521 0273 31       		.byte	0x31
+ 522 0274 0E       		.uleb128 0xe
+ 523 0275 01       		.uleb128 0x1
+ 524 0276 51       		.byte	0x51
+ 525 0277 01       		.uleb128 0x1
+ 526 0278 30       		.byte	0x30
+ 527 0279 00       		.byte	0
+ 528 027a 0D       		.uleb128 0xd
+ 529 027b 8C000000 		.4byte	.LVL20
+ 530 027f 3F030000 		.4byte	0x33f
+ 531 0283 9D020000 		.4byte	0x29d
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 12
+
+
+ 532 0287 0E       		.uleb128 0xe
+ 533 0288 01       		.uleb128 0x1
+ 534 0289 50       		.byte	0x50
+ 535 028a 02       		.uleb128 0x2
+ 536 028b 7D       		.byte	0x7d
+ 537 028c 00       		.sleb128 0
+ 538 028d 0E       		.uleb128 0xe
+ 539 028e 01       		.uleb128 0x1
+ 540 028f 51       		.byte	0x51
+ 541 0290 05       		.uleb128 0x5
+ 542 0291 03       		.byte	0x3
+ 543 0292 28000000 		.4byte	.LC2
+ 544 0296 0E       		.uleb128 0xe
+ 545 0297 01       		.uleb128 0x1
+ 546 0298 52       		.byte	0x52
+ 547 0299 02       		.uleb128 0x2
+ 548 029a 75       		.byte	0x75
+ 549 029b 00       		.sleb128 0
+ 550 029c 00       		.byte	0
+ 551 029d 0D       		.uleb128 0xd
+ 552 029e 92000000 		.4byte	.LVL21
+ 553 02a2 29030000 		.4byte	0x329
+ 554 02a6 B1020000 		.4byte	0x2b1
+ 555 02aa 0E       		.uleb128 0xe
+ 556 02ab 01       		.uleb128 0x1
+ 557 02ac 50       		.byte	0x50
+ 558 02ad 02       		.uleb128 0x2
+ 559 02ae 7D       		.byte	0x7d
+ 560 02af 00       		.sleb128 0
+ 561 02b0 00       		.byte	0
+ 562 02b1 10       		.uleb128 0x10
+ 563 02b2 98000000 		.4byte	.LVL22
+ 564 02b6 62030000 		.4byte	0x362
+ 565 02ba 0E       		.uleb128 0xe
+ 566 02bb 01       		.uleb128 0x1
+ 567 02bc 50       		.byte	0x50
+ 568 02bd 02       		.uleb128 0x2
+ 569 02be 08       		.byte	0x8
+ 570 02bf 64       		.byte	0x64
+ 571 02c0 00       		.byte	0
+ 572 02c1 00       		.byte	0
+ 573 02c2 11       		.uleb128 0x11
+ 574 02c3 D5000000 		.4byte	0xd5
+ 575 02c7 D2020000 		.4byte	0x2d2
+ 576 02cb 12       		.uleb128 0x12
+ 577 02cc E3000000 		.4byte	0xe3
+ 578 02d0 13       		.byte	0x13
+ 579 02d1 00       		.byte	0
+ 580 02d2 13       		.uleb128 0x13
+ 581 02d3 F7000000 		.4byte	0xf7
+ 582 02d7 14       		.uleb128 0x14
+ 583 02d8 25010000 		.4byte	.LASF28
+ 584 02dc 07       		.byte	0x7
+ 585 02dd 9606     		.2byte	0x696
+ 586 02df E3020000 		.4byte	0x2e3
+ 587 02e3 15       		.uleb128 0x15
+ 588 02e4 81000000 		.4byte	0x81
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 13
+
+
+ 589 02e8 16       		.uleb128 0x16
+ 590 02e9 F8010000 		.4byte	.LASF29
+ 591 02ed 01       		.byte	0x1
+ 592 02ee 1C       		.byte	0x1c
+ 593 02ef 02010000 		.4byte	0x102
+ 594 02f3 11       		.uleb128 0x11
+ 595 02f4 03030000 		.4byte	0x303
+ 596 02f8 03030000 		.4byte	0x303
+ 597 02fc 12       		.uleb128 0x12
+ 598 02fd E3000000 		.4byte	0xe3
+ 599 0301 07       		.byte	0x7
+ 600 0302 00       		.byte	0
+ 601 0303 13       		.uleb128 0x13
+ 602 0304 97000000 		.4byte	0x97
+ 603 0308 17       		.uleb128 0x17
+ 604 0309 00000000 		.4byte	.LASF30
+ 605 030d 01       		.byte	0x1
+ 606 030e 25       		.byte	0x25
+ 607 030f 19030000 		.4byte	0x319
+ 608 0313 05       		.uleb128 0x5
+ 609 0314 03       		.byte	0x3
+ 610 0315 00000000 		.4byte	pga_gain
+ 611 0319 13       		.uleb128 0x13
+ 612 031a F3020000 		.4byte	0x2f3
+ 613 031e 18       		.uleb128 0x18
+ 614 031f 37000000 		.4byte	.LASF31
+ 615 0323 37000000 		.4byte	.LASF31
+ 616 0327 08       		.byte	0x8
+ 617 0328 44       		.byte	0x44
+ 618 0329 18       		.uleb128 0x18
+ 619 032a 4E010000 		.4byte	.LASF32
+ 620 032e 4E010000 		.4byte	.LASF32
+ 621 0332 08       		.byte	0x8
+ 622 0333 43       		.byte	0x43
+ 623 0334 18       		.uleb128 0x18
+ 624 0335 A8010000 		.4byte	.LASF33
+ 625 0339 A8010000 		.4byte	.LASF33
+ 626 033d 09       		.byte	0x9
+ 627 033e 41       		.byte	0x41
+ 628 033f 18       		.uleb128 0x18
+ 629 0340 8E020000 		.4byte	.LASF34
+ 630 0344 8E020000 		.4byte	.LASF34
+ 631 0348 0A       		.byte	0xa
+ 632 0349 E7       		.byte	0xe7
+ 633 034a 19       		.uleb128 0x19
+ 634 034b A1020000 		.4byte	.LASF35
+ 635 034f A1020000 		.4byte	.LASF35
+ 636 0353 06       		.byte	0x6
+ 637 0354 A003     		.2byte	0x3a0
+ 638 0356 19       		.uleb128 0x19
+ 639 0357 FD000000 		.4byte	.LASF36
+ 640 035b FD000000 		.4byte	.LASF36
+ 641 035f 06       		.byte	0x6
+ 642 0360 9103     		.2byte	0x391
+ 643 0362 19       		.uleb128 0x19
+ 644 0363 1B020000 		.4byte	.LASF37
+ 645 0367 1B020000 		.4byte	.LASF37
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 14
+
+
+ 646 036b 0B       		.byte	0xb
+ 647 036c 2B02     		.2byte	0x22b
+ 648 036e 00       		.byte	0
+ 649              		.section	.debug_abbrev,"",%progbits
+ 650              	.Ldebug_abbrev0:
+ 651 0000 01       		.uleb128 0x1
+ 652 0001 11       		.uleb128 0x11
+ 653 0002 01       		.byte	0x1
+ 654 0003 25       		.uleb128 0x25
+ 655 0004 0E       		.uleb128 0xe
+ 656 0005 13       		.uleb128 0x13
+ 657 0006 0B       		.uleb128 0xb
+ 658 0007 03       		.uleb128 0x3
+ 659 0008 0E       		.uleb128 0xe
+ 660 0009 1B       		.uleb128 0x1b
+ 661 000a 0E       		.uleb128 0xe
+ 662 000b 55       		.uleb128 0x55
+ 663 000c 17       		.uleb128 0x17
+ 664 000d 11       		.uleb128 0x11
+ 665 000e 01       		.uleb128 0x1
+ 666 000f 10       		.uleb128 0x10
+ 667 0010 17       		.uleb128 0x17
+ 668 0011 00       		.byte	0
+ 669 0012 00       		.byte	0
+ 670 0013 02       		.uleb128 0x2
+ 671 0014 24       		.uleb128 0x24
+ 672 0015 00       		.byte	0
+ 673 0016 0B       		.uleb128 0xb
+ 674 0017 0B       		.uleb128 0xb
+ 675 0018 3E       		.uleb128 0x3e
+ 676 0019 0B       		.uleb128 0xb
+ 677 001a 03       		.uleb128 0x3
+ 678 001b 0E       		.uleb128 0xe
+ 679 001c 00       		.byte	0
+ 680 001d 00       		.byte	0
+ 681 001e 03       		.uleb128 0x3
+ 682 001f 16       		.uleb128 0x16
+ 683 0020 00       		.byte	0
+ 684 0021 03       		.uleb128 0x3
+ 685 0022 0E       		.uleb128 0xe
+ 686 0023 3A       		.uleb128 0x3a
+ 687 0024 0B       		.uleb128 0xb
+ 688 0025 3B       		.uleb128 0x3b
+ 689 0026 0B       		.uleb128 0xb
+ 690 0027 49       		.uleb128 0x49
+ 691 0028 13       		.uleb128 0x13
+ 692 0029 00       		.byte	0
+ 693 002a 00       		.byte	0
+ 694 002b 04       		.uleb128 0x4
+ 695 002c 24       		.uleb128 0x24
+ 696 002d 00       		.byte	0
+ 697 002e 0B       		.uleb128 0xb
+ 698 002f 0B       		.uleb128 0xb
+ 699 0030 3E       		.uleb128 0x3e
+ 700 0031 0B       		.uleb128 0xb
+ 701 0032 03       		.uleb128 0x3
+ 702 0033 08       		.uleb128 0x8
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 15
+
+
+ 703 0034 00       		.byte	0
+ 704 0035 00       		.byte	0
+ 705 0036 05       		.uleb128 0x5
+ 706 0037 16       		.uleb128 0x16
+ 707 0038 00       		.byte	0
+ 708 0039 03       		.uleb128 0x3
+ 709 003a 0E       		.uleb128 0xe
+ 710 003b 3A       		.uleb128 0x3a
+ 711 003c 0B       		.uleb128 0xb
+ 712 003d 3B       		.uleb128 0x3b
+ 713 003e 05       		.uleb128 0x5
+ 714 003f 49       		.uleb128 0x49
+ 715 0040 13       		.uleb128 0x13
+ 716 0041 00       		.byte	0
+ 717 0042 00       		.byte	0
+ 718 0043 06       		.uleb128 0x6
+ 719 0044 0F       		.uleb128 0xf
+ 720 0045 00       		.byte	0
+ 721 0046 0B       		.uleb128 0xb
+ 722 0047 0B       		.uleb128 0xb
+ 723 0048 00       		.byte	0
+ 724 0049 00       		.byte	0
+ 725 004a 07       		.uleb128 0x7
+ 726 004b 2E       		.uleb128 0x2e
+ 727 004c 01       		.byte	0x1
+ 728 004d 3F       		.uleb128 0x3f
+ 729 004e 19       		.uleb128 0x19
+ 730 004f 03       		.uleb128 0x3
+ 731 0050 0E       		.uleb128 0xe
+ 732 0051 3A       		.uleb128 0x3a
+ 733 0052 0B       		.uleb128 0xb
+ 734 0053 3B       		.uleb128 0x3b
+ 735 0054 0B       		.uleb128 0xb
+ 736 0055 27       		.uleb128 0x27
+ 737 0056 19       		.uleb128 0x19
+ 738 0057 8701     		.uleb128 0x87
+ 739 0059 19       		.uleb128 0x19
+ 740 005a 11       		.uleb128 0x11
+ 741 005b 01       		.uleb128 0x1
+ 742 005c 12       		.uleb128 0x12
+ 743 005d 06       		.uleb128 0x6
+ 744 005e 40       		.uleb128 0x40
+ 745 005f 18       		.uleb128 0x18
+ 746 0060 9742     		.uleb128 0x2117
+ 747 0062 19       		.uleb128 0x19
+ 748 0063 01       		.uleb128 0x1
+ 749 0064 13       		.uleb128 0x13
+ 750 0065 00       		.byte	0
+ 751 0066 00       		.byte	0
+ 752 0067 08       		.uleb128 0x8
+ 753 0068 05       		.uleb128 0x5
+ 754 0069 00       		.byte	0
+ 755 006a 03       		.uleb128 0x3
+ 756 006b 0E       		.uleb128 0xe
+ 757 006c 3A       		.uleb128 0x3a
+ 758 006d 0B       		.uleb128 0xb
+ 759 006e 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 16
+
+
+ 760 006f 0B       		.uleb128 0xb
+ 761 0070 49       		.uleb128 0x49
+ 762 0071 13       		.uleb128 0x13
+ 763 0072 02       		.uleb128 0x2
+ 764 0073 17       		.uleb128 0x17
+ 765 0074 00       		.byte	0
+ 766 0075 00       		.byte	0
+ 767 0076 09       		.uleb128 0x9
+ 768 0077 34       		.uleb128 0x34
+ 769 0078 00       		.byte	0
+ 770 0079 03       		.uleb128 0x3
+ 771 007a 0E       		.uleb128 0xe
+ 772 007b 3A       		.uleb128 0x3a
+ 773 007c 0B       		.uleb128 0xb
+ 774 007d 3B       		.uleb128 0x3b
+ 775 007e 0B       		.uleb128 0xb
+ 776 007f 49       		.uleb128 0x49
+ 777 0080 13       		.uleb128 0x13
+ 778 0081 02       		.uleb128 0x2
+ 779 0082 17       		.uleb128 0x17
+ 780 0083 00       		.byte	0
+ 781 0084 00       		.byte	0
+ 782 0085 0A       		.uleb128 0xa
+ 783 0086 34       		.uleb128 0x34
+ 784 0087 00       		.byte	0
+ 785 0088 03       		.uleb128 0x3
+ 786 0089 0E       		.uleb128 0xe
+ 787 008a 3A       		.uleb128 0x3a
+ 788 008b 0B       		.uleb128 0xb
+ 789 008c 3B       		.uleb128 0x3b
+ 790 008d 0B       		.uleb128 0xb
+ 791 008e 49       		.uleb128 0x49
+ 792 008f 13       		.uleb128 0x13
+ 793 0090 02       		.uleb128 0x2
+ 794 0091 18       		.uleb128 0x18
+ 795 0092 00       		.byte	0
+ 796 0093 00       		.byte	0
+ 797 0094 0B       		.uleb128 0xb
+ 798 0095 34       		.uleb128 0x34
+ 799 0096 00       		.byte	0
+ 800 0097 03       		.uleb128 0x3
+ 801 0098 08       		.uleb128 0x8
+ 802 0099 3A       		.uleb128 0x3a
+ 803 009a 0B       		.uleb128 0xb
+ 804 009b 3B       		.uleb128 0x3b
+ 805 009c 0B       		.uleb128 0xb
+ 806 009d 49       		.uleb128 0x49
+ 807 009e 13       		.uleb128 0x13
+ 808 009f 02       		.uleb128 0x2
+ 809 00a0 18       		.uleb128 0x18
+ 810 00a1 00       		.byte	0
+ 811 00a2 00       		.byte	0
+ 812 00a3 0C       		.uleb128 0xc
+ 813 00a4 34       		.uleb128 0x34
+ 814 00a5 00       		.byte	0
+ 815 00a6 03       		.uleb128 0x3
+ 816 00a7 0E       		.uleb128 0xe
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 17
+
+
+ 817 00a8 3A       		.uleb128 0x3a
+ 818 00a9 0B       		.uleb128 0xb
+ 819 00aa 3B       		.uleb128 0x3b
+ 820 00ab 0B       		.uleb128 0xb
+ 821 00ac 49       		.uleb128 0x49
+ 822 00ad 13       		.uleb128 0x13
+ 823 00ae 1C       		.uleb128 0x1c
+ 824 00af 0B       		.uleb128 0xb
+ 825 00b0 00       		.byte	0
+ 826 00b1 00       		.byte	0
+ 827 00b2 0D       		.uleb128 0xd
+ 828 00b3 898201   		.uleb128 0x4109
+ 829 00b6 01       		.byte	0x1
+ 830 00b7 11       		.uleb128 0x11
+ 831 00b8 01       		.uleb128 0x1
+ 832 00b9 31       		.uleb128 0x31
+ 833 00ba 13       		.uleb128 0x13
+ 834 00bb 01       		.uleb128 0x1
+ 835 00bc 13       		.uleb128 0x13
+ 836 00bd 00       		.byte	0
+ 837 00be 00       		.byte	0
+ 838 00bf 0E       		.uleb128 0xe
+ 839 00c0 8A8201   		.uleb128 0x410a
+ 840 00c3 00       		.byte	0
+ 841 00c4 02       		.uleb128 0x2
+ 842 00c5 18       		.uleb128 0x18
+ 843 00c6 9142     		.uleb128 0x2111
+ 844 00c8 18       		.uleb128 0x18
+ 845 00c9 00       		.byte	0
+ 846 00ca 00       		.byte	0
+ 847 00cb 0F       		.uleb128 0xf
+ 848 00cc 898201   		.uleb128 0x4109
+ 849 00cf 00       		.byte	0
+ 850 00d0 11       		.uleb128 0x11
+ 851 00d1 01       		.uleb128 0x1
+ 852 00d2 31       		.uleb128 0x31
+ 853 00d3 13       		.uleb128 0x13
+ 854 00d4 00       		.byte	0
+ 855 00d5 00       		.byte	0
+ 856 00d6 10       		.uleb128 0x10
+ 857 00d7 898201   		.uleb128 0x4109
+ 858 00da 01       		.byte	0x1
+ 859 00db 11       		.uleb128 0x11
+ 860 00dc 01       		.uleb128 0x1
+ 861 00dd 31       		.uleb128 0x31
+ 862 00de 13       		.uleb128 0x13
+ 863 00df 00       		.byte	0
+ 864 00e0 00       		.byte	0
+ 865 00e1 11       		.uleb128 0x11
+ 866 00e2 01       		.uleb128 0x1
+ 867 00e3 01       		.byte	0x1
+ 868 00e4 49       		.uleb128 0x49
+ 869 00e5 13       		.uleb128 0x13
+ 870 00e6 01       		.uleb128 0x1
+ 871 00e7 13       		.uleb128 0x13
+ 872 00e8 00       		.byte	0
+ 873 00e9 00       		.byte	0
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 18
+
+
+ 874 00ea 12       		.uleb128 0x12
+ 875 00eb 21       		.uleb128 0x21
+ 876 00ec 00       		.byte	0
+ 877 00ed 49       		.uleb128 0x49
+ 878 00ee 13       		.uleb128 0x13
+ 879 00ef 2F       		.uleb128 0x2f
+ 880 00f0 0B       		.uleb128 0xb
+ 881 00f1 00       		.byte	0
+ 882 00f2 00       		.byte	0
+ 883 00f3 13       		.uleb128 0x13
+ 884 00f4 26       		.uleb128 0x26
+ 885 00f5 00       		.byte	0
+ 886 00f6 49       		.uleb128 0x49
+ 887 00f7 13       		.uleb128 0x13
+ 888 00f8 00       		.byte	0
+ 889 00f9 00       		.byte	0
+ 890 00fa 14       		.uleb128 0x14
+ 891 00fb 34       		.uleb128 0x34
+ 892 00fc 00       		.byte	0
+ 893 00fd 03       		.uleb128 0x3
+ 894 00fe 0E       		.uleb128 0xe
+ 895 00ff 3A       		.uleb128 0x3a
+ 896 0100 0B       		.uleb128 0xb
+ 897 0101 3B       		.uleb128 0x3b
+ 898 0102 05       		.uleb128 0x5
+ 899 0103 49       		.uleb128 0x49
+ 900 0104 13       		.uleb128 0x13
+ 901 0105 3F       		.uleb128 0x3f
+ 902 0106 19       		.uleb128 0x19
+ 903 0107 3C       		.uleb128 0x3c
+ 904 0108 19       		.uleb128 0x19
+ 905 0109 00       		.byte	0
+ 906 010a 00       		.byte	0
+ 907 010b 15       		.uleb128 0x15
+ 908 010c 35       		.uleb128 0x35
+ 909 010d 00       		.byte	0
+ 910 010e 49       		.uleb128 0x49
+ 911 010f 13       		.uleb128 0x13
+ 912 0110 00       		.byte	0
+ 913 0111 00       		.byte	0
+ 914 0112 16       		.uleb128 0x16
+ 915 0113 34       		.uleb128 0x34
+ 916 0114 00       		.byte	0
+ 917 0115 03       		.uleb128 0x3
+ 918 0116 0E       		.uleb128 0xe
+ 919 0117 3A       		.uleb128 0x3a
+ 920 0118 0B       		.uleb128 0xb
+ 921 0119 3B       		.uleb128 0x3b
+ 922 011a 0B       		.uleb128 0xb
+ 923 011b 49       		.uleb128 0x49
+ 924 011c 13       		.uleb128 0x13
+ 925 011d 3F       		.uleb128 0x3f
+ 926 011e 19       		.uleb128 0x19
+ 927 011f 3C       		.uleb128 0x3c
+ 928 0120 19       		.uleb128 0x19
+ 929 0121 00       		.byte	0
+ 930 0122 00       		.byte	0
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 19
+
+
+ 931 0123 17       		.uleb128 0x17
+ 932 0124 34       		.uleb128 0x34
+ 933 0125 00       		.byte	0
+ 934 0126 03       		.uleb128 0x3
+ 935 0127 0E       		.uleb128 0xe
+ 936 0128 3A       		.uleb128 0x3a
+ 937 0129 0B       		.uleb128 0xb
+ 938 012a 3B       		.uleb128 0x3b
+ 939 012b 0B       		.uleb128 0xb
+ 940 012c 49       		.uleb128 0x49
+ 941 012d 13       		.uleb128 0x13
+ 942 012e 3F       		.uleb128 0x3f
+ 943 012f 19       		.uleb128 0x19
+ 944 0130 02       		.uleb128 0x2
+ 945 0131 18       		.uleb128 0x18
+ 946 0132 00       		.byte	0
+ 947 0133 00       		.byte	0
+ 948 0134 18       		.uleb128 0x18
+ 949 0135 2E       		.uleb128 0x2e
+ 950 0136 00       		.byte	0
+ 951 0137 3F       		.uleb128 0x3f
+ 952 0138 19       		.uleb128 0x19
+ 953 0139 3C       		.uleb128 0x3c
+ 954 013a 19       		.uleb128 0x19
+ 955 013b 6E       		.uleb128 0x6e
+ 956 013c 0E       		.uleb128 0xe
+ 957 013d 03       		.uleb128 0x3
+ 958 013e 0E       		.uleb128 0xe
+ 959 013f 3A       		.uleb128 0x3a
+ 960 0140 0B       		.uleb128 0xb
+ 961 0141 3B       		.uleb128 0x3b
+ 962 0142 0B       		.uleb128 0xb
+ 963 0143 00       		.byte	0
+ 964 0144 00       		.byte	0
+ 965 0145 19       		.uleb128 0x19
+ 966 0146 2E       		.uleb128 0x2e
+ 967 0147 00       		.byte	0
+ 968 0148 3F       		.uleb128 0x3f
+ 969 0149 19       		.uleb128 0x19
+ 970 014a 3C       		.uleb128 0x3c
+ 971 014b 19       		.uleb128 0x19
+ 972 014c 6E       		.uleb128 0x6e
+ 973 014d 0E       		.uleb128 0xe
+ 974 014e 03       		.uleb128 0x3
+ 975 014f 0E       		.uleb128 0xe
+ 976 0150 3A       		.uleb128 0x3a
+ 977 0151 0B       		.uleb128 0xb
+ 978 0152 3B       		.uleb128 0x3b
+ 979 0153 05       		.uleb128 0x5
+ 980 0154 00       		.byte	0
+ 981 0155 00       		.byte	0
+ 982 0156 00       		.byte	0
+ 983              		.section	.debug_loc,"",%progbits
+ 984              	.Ldebug_loc0:
+ 985              	.LLST0:
+ 986 0000 00000000 		.4byte	.LVL0
+ 987 0004 08000000 		.4byte	.LVL2
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 20
+
+
+ 988 0008 0100     		.2byte	0x1
+ 989 000a 50       		.byte	0x50
+ 990 000b 08000000 		.4byte	.LVL2
+ 991 000f B0000000 		.4byte	.LFE65
+ 992 0013 0400     		.2byte	0x4
+ 993 0015 F3       		.byte	0xf3
+ 994 0016 01       		.uleb128 0x1
+ 995 0017 50       		.byte	0x50
+ 996 0018 9F       		.byte	0x9f
+ 997 0019 00000000 		.4byte	0
+ 998 001d 00000000 		.4byte	0
+ 999              	.LLST1:
+ 1000 0021 04000000 		.4byte	.LVL1
+ 1001 0025 40000000 		.4byte	.LVL11
+ 1002 0029 0200     		.2byte	0x2
+ 1003 002b 32       		.byte	0x32
+ 1004 002c 9F       		.byte	0x9f
+ 1005 002d 40000000 		.4byte	.LVL11
+ 1006 0031 60000000 		.4byte	.LVL14
+ 1007 0035 0100     		.2byte	0x1
+ 1008 0037 54       		.byte	0x54
+ 1009 0038 62000000 		.4byte	.LVL15
+ 1010 003c B0000000 		.4byte	.LFE65
+ 1011 0040 0100     		.2byte	0x1
+ 1012 0042 54       		.byte	0x54
+ 1013 0043 00000000 		.4byte	0
+ 1014 0047 00000000 		.4byte	0
+ 1015              		.section	.debug_aranges,"",%progbits
+ 1016 0000 1C000000 		.4byte	0x1c
+ 1017 0004 0200     		.2byte	0x2
+ 1018 0006 00000000 		.4byte	.Ldebug_info0
+ 1019 000a 04       		.byte	0x4
+ 1020 000b 00       		.byte	0
+ 1021 000c 0000     		.2byte	0
+ 1022 000e 0000     		.2byte	0
+ 1023 0010 00000000 		.4byte	.LFB65
+ 1024 0014 B0000000 		.4byte	.LFE65-.LFB65
+ 1025 0018 00000000 		.4byte	0
+ 1026 001c 00000000 		.4byte	0
+ 1027              		.section	.debug_ranges,"",%progbits
+ 1028              	.Ldebug_ranges0:
+ 1029 0000 00000000 		.4byte	.LFB65
+ 1030 0004 B0000000 		.4byte	.LFE65
+ 1031 0008 00000000 		.4byte	0
+ 1032 000c 00000000 		.4byte	0
+ 1033              		.section	.debug_line,"",%progbits
+ 1034              	.Ldebug_line0:
+ 1035 0000 5F020000 		.section	.debug_str,"MS",%progbits,1
+ 1035      02003002 
+ 1035      00000201 
+ 1035      FB0E0D00 
+ 1035      01010101 
+ 1036              	.LASF30:
+ 1037 0000 7067615F 		.ascii	"pga_gain\000"
+ 1037      6761696E 
+ 1037      00
+ 1038              	.LASF23:
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 21
+
+
+ 1039 0009 5469636B 		.ascii	"TickType_t\000"
+ 1039      54797065 
+ 1039      5F7400
+ 1040              	.LASF5:
+ 1041 0014 5F5F696E 		.ascii	"__int32_t\000"
+ 1041      7433325F 
+ 1041      7400
+ 1042              	.LASF24:
+ 1043 001e 51756575 		.ascii	"QueueHandle_t\000"
+ 1043      6548616E 
+ 1043      646C655F 
+ 1043      7400
+ 1044              	.LASF25:
+ 1045 002c 6761696E 		.ascii	"gain\000"
+ 1045      00
+ 1046              	.LASF17:
+ 1047 0031 666C6F61 		.ascii	"float\000"
+ 1047      7400
+ 1048              	.LASF31:
+ 1049 0037 4932435F 		.ascii	"I2C_CLCD_Position\000"
+ 1049      434C4344 
+ 1049      5F506F73 
+ 1049      6974696F 
+ 1049      6E00
+ 1050              	.LASF1:
+ 1051 0049 756E7369 		.ascii	"unsigned char\000"
+ 1051      676E6564 
+ 1051      20636861 
+ 1051      7200
+ 1052              	.LASF38:
+ 1053 0057 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1053      43313120 
+ 1053      352E342E 
+ 1053      31203230 
+ 1053      31363036 
+ 1054 008a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1054      20726576 
+ 1054      6973696F 
+ 1054      6E203233 
+ 1054      37373135 
+ 1055 00bd 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1055      66756E63 
+ 1055      74696F6E 
+ 1055      2D736563 
+ 1055      74696F6E 
+ 1056              	.LASF16:
+ 1057 00e5 696E7431 		.ascii	"int16\000"
+ 1057      3600
+ 1058              	.LASF7:
+ 1059 00eb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1059      20756E73 
+ 1059      69676E65 
+ 1059      6420696E 
+ 1059      7400
+ 1060              	.LASF36:
+ 1061 00fd 78517565 		.ascii	"xQueueGenericReceive\000"
+ 1061      75654765 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 22
+
+
+ 1061      6E657269 
+ 1061      63526563 
+ 1061      65697665 
+ 1062              	.LASF3:
+ 1063 0112 73686F72 		.ascii	"short unsigned int\000"
+ 1063      7420756E 
+ 1063      7369676E 
+ 1063      65642069 
+ 1063      6E7400
+ 1064              	.LASF28:
+ 1065 0125 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1065      52784275 
+ 1065      66666572 
+ 1065      00
+ 1066              	.LASF39:
+ 1067 0132 434C4344 		.ascii	"CLCD_control.c\000"
+ 1067      5F636F6E 
+ 1067      74726F6C 
+ 1067      2E6300
+ 1068              	.LASF26:
+ 1069 0141 636C6963 		.ascii	"click\000"
+ 1069      6B00
+ 1070              	.LASF18:
+ 1071 0147 646F7562 		.ascii	"double\000"
+ 1071      6C6500
+ 1072              	.LASF32:
+ 1073 014e 4932435F 		.ascii	"I2C_CLCD_PrintString\000"
+ 1073      434C4344 
+ 1073      5F507269 
+ 1073      6E745374 
+ 1073      72696E67 
+ 1074              	.LASF6:
+ 1075 0163 5F5F7569 		.ascii	"__uint32_t\000"
+ 1075      6E743332 
+ 1075      5F7400
+ 1076              	.LASF14:
+ 1077 016e 75696E74 		.ascii	"uint16\000"
+ 1077      313600
+ 1078              	.LASF15:
+ 1079 0175 696E7438 		.ascii	"int8\000"
+ 1079      00
+ 1080              	.LASF41:
+ 1081 017a 5461736B 		.ascii	"Task_CLCD\000"
+ 1081      5F434C43 
+ 1081      4400
+ 1082              	.LASF10:
+ 1083 0184 756E7369 		.ascii	"unsigned int\000"
+ 1083      676E6564 
+ 1083      20696E74 
+ 1083      00
+ 1084              	.LASF9:
+ 1085 0191 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1085      206C6F6E 
+ 1085      6720756E 
+ 1085      7369676E 
+ 1085      65642069 
+ 1086              	.LASF33:
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 23
+
+
+ 1087 01a8 5047415F 		.ascii	"PGA_1_SetGain\000"
+ 1087      315F5365 
+ 1087      74476169 
+ 1087      6E00
+ 1088              	.LASF11:
+ 1089 01b6 696E7433 		.ascii	"int32_t\000"
+ 1089      325F7400 
+ 1090              	.LASF21:
+ 1091 01be 73697A65 		.ascii	"sizetype\000"
+ 1091      74797065 
+ 1091      00
+ 1092              	.LASF27:
+ 1093 01c7 7844656C 		.ascii	"xDelay\000"
+ 1093      617900
+ 1094              	.LASF8:
+ 1095 01ce 6C6F6E67 		.ascii	"long long int\000"
+ 1095      206C6F6E 
+ 1095      6720696E 
+ 1095      7400
+ 1096              	.LASF19:
+ 1097 01dc 63686172 		.ascii	"char\000"
+ 1097      00
+ 1098              	.LASF42:
+ 1099 01e1 70765061 		.ascii	"pvParameters\000"
+ 1099      72616D65 
+ 1099      74657273 
+ 1099      00
+ 1100              	.LASF2:
+ 1101 01ee 73686F72 		.ascii	"short int\000"
+ 1101      7420696E 
+ 1101      7400
+ 1102              	.LASF29:
+ 1103 01f8 78517565 		.ascii	"xQueue_ROT\000"
+ 1103      75655F52 
+ 1103      4F5400
+ 1104              	.LASF13:
+ 1105 0203 75696E74 		.ascii	"uint8\000"
+ 1105      3800
+ 1106              	.LASF12:
+ 1107 0209 75696E74 		.ascii	"uint32_t\000"
+ 1107      33325F74 
+ 1107      00
+ 1108              	.LASF4:
+ 1109 0212 6C6F6E67 		.ascii	"long int\000"
+ 1109      20696E74 
+ 1109      00
+ 1110              	.LASF37:
+ 1111 021b 76546173 		.ascii	"vTaskDelay\000"
+ 1111      6B44656C 
+ 1111      617900
+ 1112              	.LASF20:
+ 1113 0226 6C6F6E67 		.ascii	"long double\000"
+ 1113      20646F75 
+ 1113      626C6500 
+ 1114              	.LASF0:
+ 1115 0232 7369676E 		.ascii	"signed char\000"
+ 1115      65642063 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\cclxAXbM.s 			page 24
+
+
+ 1115      68617200 
+ 1116              	.LASF40:
+ 1117 023e 453A5C50 		.ascii	"E:\\PSoC_Creator\\CY8CKIT-059\\CY8CKIT-059_CW_Decod"
+ 1117      536F435F 
+ 1117      43726561 
+ 1117      746F725C 
+ 1117      43593843 
+ 1118 026e 65725C43 		.ascii	"er\\CY8CKIT-059_CW_Decoder.cydsn\000"
+ 1118      5938434B 
+ 1118      49542D30 
+ 1118      35395F43 
+ 1118      575F4465 
+ 1119              	.LASF34:
+ 1120 028e 73707269 		.ascii	"sprintf\000"
+ 1120      6E746600 
+ 1121              	.LASF22:
+ 1122 0296 42617365 		.ascii	"BaseType_t\000"
+ 1122      54797065 
+ 1122      5F7400
+ 1123              	.LASF35:
+ 1124 02a1 75785175 		.ascii	"uxQueueMessagesWaiting\000"
+ 1124      6575654D 
+ 1124      65737361 
+ 1124      67657357 
+ 1124      61697469 
+ 1125              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

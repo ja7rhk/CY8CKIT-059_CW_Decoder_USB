@@ -1,0 +1,16 @@
+initial:
+  acu(clear, clear) dmux(sa, sa) alu(set0) mac(hold)
+  acu(setmod, setmod) dmux(sa,sa) alu(hold) mac(clra) jmp(eob, waitfordata)
+
+waitfordata:
+  // Wait for both stageA and stageB data
+  acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold) jmpl(in1, in2, dataread)
+
+dataread:
+  acu(hold, hold) addr(1) dmux(ba, sa) alu(seta) mac(hold)	// Move data from stageA to ALU
+  acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold)			// Wait for ALU output
+  acu(hold, hold) addr(0) dmux(sa, ba) alu(hold) mac(clra)	// Multiply stageB and ALU
+  acu(hold, hold) dmux(sm, sa) alu(hold) mac(hold)			// Move data from MAC to ALU
+  acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold)			// Wait for ALU output
+  // Output next multiplied element
+  acu(hold, hold) addr(1) dmux(sa, sa) alu(hold) mac(hold) write(abus) jmp(eob, waitfordata)

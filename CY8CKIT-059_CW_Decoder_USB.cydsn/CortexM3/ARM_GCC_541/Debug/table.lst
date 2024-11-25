@@ -1,0 +1,535 @@
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"table.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	MorseCharTraslateTable
+  20              		.section	.rodata
+  21              		.align	2
+  22              		.type	MorseCharTraslateTable, %object
+  23              		.size	MorseCharTraslateTable, 122
+  24              	MorseCharTraslateTable:
+  25 0000 2E       		.byte	46
+  26 0001 2E       		.byte	46
+  27 0002 54       		.byte	84
+  28 0003 45       		.byte	69
+  29 0004 4D       		.byte	77
+  30 0005 41       		.byte	65
+  31 0006 4E       		.byte	78
+  32 0007 49       		.byte	73
+  33 0008 4F       		.byte	79
+  34 0009 57       		.byte	87
+  35 000a 4B       		.byte	75
+  36 000b 55       		.byte	85
+  37 000c 47       		.byte	71
+  38 000d 52       		.byte	82
+  39 000e 44       		.byte	68
+  40 000f 53       		.byte	83
+  41 0010 2E       		.byte	46
+  42 0011 4A       		.byte	74
+  43 0012 59       		.byte	89
+  44 0013 2E       		.byte	46
+  45 0014 51       		.byte	81
+  46 0015 2E       		.byte	46
+  47 0016 58       		.byte	88
+  48 0017 56       		.byte	86
+  49 0018 2E       		.byte	46
+  50 0019 50       		.byte	80
+  51 001a 43       		.byte	67
+  52 001b 46       		.byte	70
+  53 001c 5A       		.byte	90
+  54 001d 4C       		.byte	76
+  55 001e 42       		.byte	66
+  56 001f 48       		.byte	72
+  57 0020 30       		.byte	48
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 2
+
+
+  58 0021 31       		.byte	49
+  59 0022 2E       		.byte	46
+  60 0023 32       		.byte	50
+  61 0024 2E       		.byte	46
+  62 0025 2E       		.byte	46
+  63 0026 2E       		.byte	46
+  64 0027 33       		.byte	51
+  65 0028 2E       		.byte	46
+  66 0029 41       		.byte	65
+  67 002a 7E       		.byte	126
+  68 002b 2E       		.byte	46
+  69 002c 2E       		.byte	46
+  70 002d 2E       		.byte	46
+  71 002e 3D       		.byte	61
+  72 002f 34       		.byte	52
+  73 0030 39       		.byte	57
+  74 0031 2E       		.byte	46
+  75 0032 28       		.byte	40
+  76 0033 2E       		.byte	46
+  77 0034 2E       		.byte	46
+  78 0035 2B       		.byte	43
+  79 0036 2F       		.byte	47
+  80 0037 2A       		.byte	42
+  81 0038 38       		.byte	56
+  82 0039 2E       		.byte	46
+  83 003a 2E       		.byte	46
+  84 003b 45       		.byte	69
+  85 003c 37       		.byte	55
+  86 003d 2E       		.byte	46
+  87 003e 36       		.byte	54
+  88 003f 35       		.byte	53
+  89 0040 2E       		.byte	46
+  90 0041 2E       		.byte	46
+  91 0042 2E       		.byte	46
+  92 0043 2E       		.byte	46
+  93 0044 2E       		.byte	46
+  94 0045 2E       		.byte	46
+  95 0046 2E       		.byte	46
+  96 0047 2E       		.byte	46
+  97 0048 2E       		.byte	46
+  98 0049 2E       		.byte	46
+  99 004a 2E       		.byte	46
+ 100 004b 2E       		.byte	46
+ 101 004c 2C       		.byte	44
+ 102 004d 2E       		.byte	46
+ 103 004e 2E       		.byte	46
+ 104 004f 2E       		.byte	46
+ 105 0050 2E       		.byte	46
+ 106 0051 2E       		.byte	46
+ 107 0052 29       		.byte	41
+ 108 0053 5F       		.byte	95
+ 109 0054 2E       		.byte	46
+ 110 0055 2E       		.byte	46
+ 111 0056 2E       		.byte	46
+ 112 0057 2E       		.byte	46
+ 113 0058 2E       		.byte	46
+ 114 0059 2E       		.byte	46
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 3
+
+
+ 115 005a 2E       		.byte	46
+ 116 005b 2E       		.byte	46
+ 117 005c 2E       		.byte	46
+ 118 005d 2E       		.byte	46
+ 119 005e 2D       		.byte	45
+ 120 005f 2E       		.byte	46
+ 121 0060 2E       		.byte	46
+ 122 0061 2E       		.byte	46
+ 123 0062 2E       		.byte	46
+ 124 0063 2E       		.byte	46
+ 125 0064 2E       		.byte	46
+ 126 0065 2E       		.byte	46
+ 127 0066 2E       		.byte	46
+ 128 0067 2E       		.byte	46
+ 129 0068 2E       		.byte	46
+ 130 0069 2E       		.byte	46
+ 131 006a 3B       		.byte	59
+ 132 006b 2E       		.byte	46
+ 133 006c 2E       		.byte	46
+ 134 006d 22       		.byte	34
+ 135 006e 2E       		.byte	46
+ 136 006f 2E       		.byte	46
+ 137 0070 2E       		.byte	46
+ 138 0071 2E       		.byte	46
+ 139 0072 2E       		.byte	46
+ 140 0073 3F       		.byte	63
+ 141 0074 2E       		.byte	46
+ 142 0075 2E       		.byte	46
+ 143 0076 2E       		.byte	46
+ 144 0077 2E       		.byte	46
+ 145 0078 3A       		.byte	58
+ 146 0079 2E       		.byte	46
+ 147              		.text
+ 148              	.Letext0:
+ 149              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 150              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 151              		.file 3 "Generated_Source\\PSoC5/core_cm3.h"
+ 152              		.file 4 "table.c"
+ 153              		.section	.debug_info,"",%progbits
+ 154              	.Ldebug_info0:
+ 155 0000 D5000000 		.4byte	0xd5
+ 156 0004 0400     		.2byte	0x4
+ 157 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 158 000a 04       		.byte	0x4
+ 159 000b 01       		.uleb128 0x1
+ 160 000c D4000000 		.4byte	.LASF18
+ 161 0010 0C       		.byte	0xc
+ 162 0011 62010000 		.4byte	.LASF19
+ 163 0015 7C000000 		.4byte	.LASF20
+ 164 0019 00000000 		.4byte	.Ldebug_line0
+ 165 001d 02       		.uleb128 0x2
+ 166 001e 01       		.byte	0x1
+ 167 001f 06       		.byte	0x6
+ 168 0020 8C010000 		.4byte	.LASF0
+ 169 0024 02       		.uleb128 0x2
+ 170 0025 01       		.byte	0x1
+ 171 0026 08       		.byte	0x8
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 4
+
+
+ 172 0027 45000000 		.4byte	.LASF1
+ 173 002b 02       		.uleb128 0x2
+ 174 002c 02       		.byte	0x2
+ 175 002d 05       		.byte	0x5
+ 176 002e B4010000 		.4byte	.LASF2
+ 177 0032 02       		.uleb128 0x2
+ 178 0033 02       		.byte	0x2
+ 179 0034 07       		.byte	0x7
+ 180 0035 0E000000 		.4byte	.LASF3
+ 181 0039 03       		.uleb128 0x3
+ 182 003a A4010000 		.4byte	.LASF9
+ 183 003e 01       		.byte	0x1
+ 184 003f 3F       		.byte	0x3f
+ 185 0040 44000000 		.4byte	0x44
+ 186 0044 02       		.uleb128 0x2
+ 187 0045 04       		.byte	0x4
+ 188 0046 05       		.byte	0x5
+ 189 0047 6F010000 		.4byte	.LASF4
+ 190 004b 02       		.uleb128 0x2
+ 191 004c 04       		.byte	0x4
+ 192 004d 07       		.byte	0x7
+ 193 004e 53000000 		.4byte	.LASF5
+ 194 0052 02       		.uleb128 0x2
+ 195 0053 08       		.byte	0x8
+ 196 0054 05       		.byte	0x5
+ 197 0055 00000000 		.4byte	.LASF6
+ 198 0059 02       		.uleb128 0x2
+ 199 005a 08       		.byte	0x8
+ 200 005b 07       		.byte	0x7
+ 201 005c 65000000 		.4byte	.LASF7
+ 202 0060 04       		.uleb128 0x4
+ 203 0061 04       		.byte	0x4
+ 204 0062 05       		.byte	0x5
+ 205 0063 696E7400 		.ascii	"int\000"
+ 206 0067 02       		.uleb128 0x2
+ 207 0068 04       		.byte	0x4
+ 208 0069 07       		.byte	0x7
+ 209 006a 21000000 		.4byte	.LASF8
+ 210 006e 03       		.uleb128 0x3
+ 211 006f BE010000 		.4byte	.LASF10
+ 212 0073 02       		.byte	0x2
+ 213 0074 2C       		.byte	0x2c
+ 214 0075 39000000 		.4byte	0x39
+ 215 0079 02       		.uleb128 0x2
+ 216 007a 04       		.byte	0x4
+ 217 007b 04       		.byte	0x4
+ 218 007c AE010000 		.4byte	.LASF11
+ 219 0080 02       		.uleb128 0x2
+ 220 0081 08       		.byte	0x8
+ 221 0082 04       		.byte	0x4
+ 222 0083 78010000 		.4byte	.LASF12
+ 223 0087 02       		.uleb128 0x2
+ 224 0088 01       		.byte	0x1
+ 225 0089 08       		.byte	0x8
+ 226 008a 6A010000 		.4byte	.LASF13
+ 227 008e 02       		.uleb128 0x2
+ 228 008f 08       		.byte	0x8
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 5
+
+
+ 229 0090 04       		.byte	0x4
+ 230 0091 98010000 		.4byte	.LASF14
+ 231 0095 02       		.uleb128 0x2
+ 232 0096 04       		.byte	0x4
+ 233 0097 07       		.byte	0x7
+ 234 0098 C6010000 		.4byte	.LASF15
+ 235 009c 05       		.uleb128 0x5
+ 236 009d 87000000 		.4byte	0x87
+ 237 00a1 06       		.uleb128 0x6
+ 238 00a2 7F010000 		.4byte	.LASF16
+ 239 00a6 03       		.byte	0x3
+ 240 00a7 1207     		.2byte	0x712
+ 241 00a9 AD000000 		.4byte	0xad
+ 242 00ad 07       		.uleb128 0x7
+ 243 00ae 6E000000 		.4byte	0x6e
+ 244 00b2 08       		.uleb128 0x8
+ 245 00b3 9C000000 		.4byte	0x9c
+ 246 00b7 C2000000 		.4byte	0xc2
+ 247 00bb 09       		.uleb128 0x9
+ 248 00bc 95000000 		.4byte	0x95
+ 249 00c0 79       		.byte	0x79
+ 250 00c1 00       		.byte	0
+ 251 00c2 0A       		.uleb128 0xa
+ 252 00c3 2E000000 		.4byte	.LASF17
+ 253 00c7 04       		.byte	0x4
+ 254 00c8 12       		.byte	0x12
+ 255 00c9 D3000000 		.4byte	0xd3
+ 256 00cd 05       		.uleb128 0x5
+ 257 00ce 03       		.byte	0x3
+ 258 00cf 00000000 		.4byte	MorseCharTraslateTable
+ 259 00d3 05       		.uleb128 0x5
+ 260 00d4 B2000000 		.4byte	0xb2
+ 261 00d8 00       		.byte	0
+ 262              		.section	.debug_abbrev,"",%progbits
+ 263              	.Ldebug_abbrev0:
+ 264 0000 01       		.uleb128 0x1
+ 265 0001 11       		.uleb128 0x11
+ 266 0002 01       		.byte	0x1
+ 267 0003 25       		.uleb128 0x25
+ 268 0004 0E       		.uleb128 0xe
+ 269 0005 13       		.uleb128 0x13
+ 270 0006 0B       		.uleb128 0xb
+ 271 0007 03       		.uleb128 0x3
+ 272 0008 0E       		.uleb128 0xe
+ 273 0009 1B       		.uleb128 0x1b
+ 274 000a 0E       		.uleb128 0xe
+ 275 000b 10       		.uleb128 0x10
+ 276 000c 17       		.uleb128 0x17
+ 277 000d 00       		.byte	0
+ 278 000e 00       		.byte	0
+ 279 000f 02       		.uleb128 0x2
+ 280 0010 24       		.uleb128 0x24
+ 281 0011 00       		.byte	0
+ 282 0012 0B       		.uleb128 0xb
+ 283 0013 0B       		.uleb128 0xb
+ 284 0014 3E       		.uleb128 0x3e
+ 285 0015 0B       		.uleb128 0xb
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 6
+
+
+ 286 0016 03       		.uleb128 0x3
+ 287 0017 0E       		.uleb128 0xe
+ 288 0018 00       		.byte	0
+ 289 0019 00       		.byte	0
+ 290 001a 03       		.uleb128 0x3
+ 291 001b 16       		.uleb128 0x16
+ 292 001c 00       		.byte	0
+ 293 001d 03       		.uleb128 0x3
+ 294 001e 0E       		.uleb128 0xe
+ 295 001f 3A       		.uleb128 0x3a
+ 296 0020 0B       		.uleb128 0xb
+ 297 0021 3B       		.uleb128 0x3b
+ 298 0022 0B       		.uleb128 0xb
+ 299 0023 49       		.uleb128 0x49
+ 300 0024 13       		.uleb128 0x13
+ 301 0025 00       		.byte	0
+ 302 0026 00       		.byte	0
+ 303 0027 04       		.uleb128 0x4
+ 304 0028 24       		.uleb128 0x24
+ 305 0029 00       		.byte	0
+ 306 002a 0B       		.uleb128 0xb
+ 307 002b 0B       		.uleb128 0xb
+ 308 002c 3E       		.uleb128 0x3e
+ 309 002d 0B       		.uleb128 0xb
+ 310 002e 03       		.uleb128 0x3
+ 311 002f 08       		.uleb128 0x8
+ 312 0030 00       		.byte	0
+ 313 0031 00       		.byte	0
+ 314 0032 05       		.uleb128 0x5
+ 315 0033 26       		.uleb128 0x26
+ 316 0034 00       		.byte	0
+ 317 0035 49       		.uleb128 0x49
+ 318 0036 13       		.uleb128 0x13
+ 319 0037 00       		.byte	0
+ 320 0038 00       		.byte	0
+ 321 0039 06       		.uleb128 0x6
+ 322 003a 34       		.uleb128 0x34
+ 323 003b 00       		.byte	0
+ 324 003c 03       		.uleb128 0x3
+ 325 003d 0E       		.uleb128 0xe
+ 326 003e 3A       		.uleb128 0x3a
+ 327 003f 0B       		.uleb128 0xb
+ 328 0040 3B       		.uleb128 0x3b
+ 329 0041 05       		.uleb128 0x5
+ 330 0042 49       		.uleb128 0x49
+ 331 0043 13       		.uleb128 0x13
+ 332 0044 3F       		.uleb128 0x3f
+ 333 0045 19       		.uleb128 0x19
+ 334 0046 3C       		.uleb128 0x3c
+ 335 0047 19       		.uleb128 0x19
+ 336 0048 00       		.byte	0
+ 337 0049 00       		.byte	0
+ 338 004a 07       		.uleb128 0x7
+ 339 004b 35       		.uleb128 0x35
+ 340 004c 00       		.byte	0
+ 341 004d 49       		.uleb128 0x49
+ 342 004e 13       		.uleb128 0x13
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 7
+
+
+ 343 004f 00       		.byte	0
+ 344 0050 00       		.byte	0
+ 345 0051 08       		.uleb128 0x8
+ 346 0052 01       		.uleb128 0x1
+ 347 0053 01       		.byte	0x1
+ 348 0054 49       		.uleb128 0x49
+ 349 0055 13       		.uleb128 0x13
+ 350 0056 01       		.uleb128 0x1
+ 351 0057 13       		.uleb128 0x13
+ 352 0058 00       		.byte	0
+ 353 0059 00       		.byte	0
+ 354 005a 09       		.uleb128 0x9
+ 355 005b 21       		.uleb128 0x21
+ 356 005c 00       		.byte	0
+ 357 005d 49       		.uleb128 0x49
+ 358 005e 13       		.uleb128 0x13
+ 359 005f 2F       		.uleb128 0x2f
+ 360 0060 0B       		.uleb128 0xb
+ 361 0061 00       		.byte	0
+ 362 0062 00       		.byte	0
+ 363 0063 0A       		.uleb128 0xa
+ 364 0064 34       		.uleb128 0x34
+ 365 0065 00       		.byte	0
+ 366 0066 03       		.uleb128 0x3
+ 367 0067 0E       		.uleb128 0xe
+ 368 0068 3A       		.uleb128 0x3a
+ 369 0069 0B       		.uleb128 0xb
+ 370 006a 3B       		.uleb128 0x3b
+ 371 006b 0B       		.uleb128 0xb
+ 372 006c 49       		.uleb128 0x49
+ 373 006d 13       		.uleb128 0x13
+ 374 006e 3F       		.uleb128 0x3f
+ 375 006f 19       		.uleb128 0x19
+ 376 0070 02       		.uleb128 0x2
+ 377 0071 18       		.uleb128 0x18
+ 378 0072 00       		.byte	0
+ 379 0073 00       		.byte	0
+ 380 0074 00       		.byte	0
+ 381              		.section	.debug_aranges,"",%progbits
+ 382 0000 14000000 		.4byte	0x14
+ 383 0004 0200     		.2byte	0x2
+ 384 0006 00000000 		.4byte	.Ldebug_info0
+ 385 000a 04       		.byte	0x4
+ 386 000b 00       		.byte	0
+ 387 000c 0000     		.2byte	0
+ 388 000e 0000     		.2byte	0
+ 389 0010 00000000 		.4byte	0
+ 390 0014 00000000 		.4byte	0
+ 391              		.section	.debug_line,"",%progbits
+ 392              	.Ldebug_line0:
+ 393 0000 46010000 		.section	.debug_str,"MS",%progbits,1
+ 393      02004001 
+ 393      00000201 
+ 393      FB0E0D00 
+ 393      01010101 
+ 394              	.LASF6:
+ 395 0000 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 8
+
+
+ 395      206C6F6E 
+ 395      6720696E 
+ 395      7400
+ 396              	.LASF3:
+ 397 000e 73686F72 		.ascii	"short unsigned int\000"
+ 397      7420756E 
+ 397      7369676E 
+ 397      65642069 
+ 397      6E7400
+ 398              	.LASF8:
+ 399 0021 756E7369 		.ascii	"unsigned int\000"
+ 399      676E6564 
+ 399      20696E74 
+ 399      00
+ 400              	.LASF17:
+ 401 002e 4D6F7273 		.ascii	"MorseCharTraslateTable\000"
+ 401      65436861 
+ 401      72547261 
+ 401      736C6174 
+ 401      65546162 
+ 402              	.LASF1:
+ 403 0045 756E7369 		.ascii	"unsigned char\000"
+ 403      676E6564 
+ 403      20636861 
+ 403      7200
+ 404              	.LASF5:
+ 405 0053 6C6F6E67 		.ascii	"long unsigned int\000"
+ 405      20756E73 
+ 405      69676E65 
+ 405      6420696E 
+ 405      7400
+ 406              	.LASF7:
+ 407 0065 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 407      206C6F6E 
+ 407      6720756E 
+ 407      7369676E 
+ 407      65642069 
+ 408              	.LASF20:
+ 409 007c 453A5C50 		.ascii	"E:\\PSoC_Creator\\CY8CKIT-059\\CY8CKIT-059_CW_Decod"
+ 409      536F435F 
+ 409      43726561 
+ 409      746F725C 
+ 409      43593843 
+ 410 00ac 65725F55 		.ascii	"er_USB\\CY8CKIT-059_CW_Decoder_USB.cydsn\000"
+ 410      53425C43 
+ 410      5938434B 
+ 410      49542D30 
+ 410      35395F43 
+ 411              	.LASF18:
+ 412 00d4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 412      43313120 
+ 412      352E342E 
+ 412      31203230 
+ 412      31363036 
+ 413 0107 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 413      20726576 
+ 413      6973696F 
+ARM GAS  C:\Users\koseki\AppData\Local\Temp\ccyQog7c.s 			page 9
+
+
+ 413      6E203233 
+ 413      37373135 
+ 414 013a 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 414      66756E63 
+ 414      74696F6E 
+ 414      2D736563 
+ 414      74696F6E 
+ 415              	.LASF19:
+ 416 0162 7461626C 		.ascii	"table.c\000"
+ 416      652E6300 
+ 417              	.LASF13:
+ 418 016a 63686172 		.ascii	"char\000"
+ 418      00
+ 419              	.LASF4:
+ 420 016f 6C6F6E67 		.ascii	"long int\000"
+ 420      20696E74 
+ 420      00
+ 421              	.LASF12:
+ 422 0178 646F7562 		.ascii	"double\000"
+ 422      6C6500
+ 423              	.LASF16:
+ 424 017f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 424      52784275 
+ 424      66666572 
+ 424      00
+ 425              	.LASF0:
+ 426 018c 7369676E 		.ascii	"signed char\000"
+ 426      65642063 
+ 426      68617200 
+ 427              	.LASF14:
+ 428 0198 6C6F6E67 		.ascii	"long double\000"
+ 428      20646F75 
+ 428      626C6500 
+ 429              	.LASF9:
+ 430 01a4 5F5F696E 		.ascii	"__int32_t\000"
+ 430      7433325F 
+ 430      7400
+ 431              	.LASF11:
+ 432 01ae 666C6F61 		.ascii	"float\000"
+ 432      7400
+ 433              	.LASF2:
+ 434 01b4 73686F72 		.ascii	"short int\000"
+ 434      7420696E 
+ 434      7400
+ 435              	.LASF10:
+ 436 01be 696E7433 		.ascii	"int32_t\000"
+ 436      325F7400 
+ 437              	.LASF15:
+ 438 01c6 73697A65 		.ascii	"sizetype\000"
+ 438      74797065 
+ 438      00
+ 439              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

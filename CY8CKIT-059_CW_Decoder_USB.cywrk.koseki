@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\TopDesign</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydwr</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\croutine.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\deprecated_definitions.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\event_groups.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\FreeRTOS.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\list.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\mpu_wrappers.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\portable.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\portmacro.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\projdefs.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\queue.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\semphr.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\StackMacros.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\task.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Kernel\timers.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Utility</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\Utility\rot.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\device.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Header Files\USBUART_FIFO.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\croutine.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\event_groups.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\heap_2.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\list.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\port.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\queue.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\tasks.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Kernel\timers.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Utility</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\Utility\rot.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\main.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Source Files\USBUART_FIFO.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Clock_1</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Clock_1\Clock_1.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Clock_1\Clock_1.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\isr_filter</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\isr_filter\isr_filter.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\isr_filter\isr_filter.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\LED</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\LED\LED.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\LED\LED.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\LED\LED_aliases.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\PGA_1</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\PGA_1\PGA_1.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\PGA_1\PGA_1.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\PGA_1\PGA_1_PM.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_A</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_A\ROT_A.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_A\ROT_A.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_A\ROT_A_aliases.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_B</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_B\ROT_B.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_B\ROT_B.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\ROT_B\ROT_B_aliases.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Timer_1</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Timer_1\Timer_1.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Timer_1\Timer_1.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\Timer_1\Timer_1_PM.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\timerISR_1</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\timerISR_1\timerISR_1.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\timerISR_1\timerISR_1.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevice.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfitter.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\cymetadata.c</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Generated_Source\PSoC5\project.h</v>
+</ExpandedNodeIds>
+<VisibleNodeIds />
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\TopDesign</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds />
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_Ext_CP_Clk.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_INT.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_IRQ.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_theACLK.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\AF_IN.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\AF_OUT.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2kHz.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Control_Reg_1_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\croutine.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\DMA_dma.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\event_groups.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Filter.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Filter_Coefficients.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Filter_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Filter_PVT.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Filter_RAM_Data.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\heap_2.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\int_uartQueue.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_filter.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\LED_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\list.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\MON_ISR.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\PGA_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\PGA_1_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\PI_KEY_0.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\PI_KEY_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\port.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\queue.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\rot.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ROT_A.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\ROT_B.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Status_Reg_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\table.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\tasks.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\timerISR_1.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\timers.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\TONE.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_FIFO.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_PM.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\Listing Files\VREF_OUT.lst</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\CY8CKIT-059_CW_Decoder_USB.elf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\CY8CKIT-059_CW_Decoder_USB.hex</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CortexM3\ARM_GCC_541\Debug\CY8CKIT-059_CW_Decoder_USB.map</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.gpdsc</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.rpt</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds />
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB">
+<ExpandedNodeIds>
+<v>CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\PSoC 5LP Architecture TRM</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CY8C58LP Family Datasheet</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\System Reference Guides</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\System Reference Guides\cy_boot_v5_60</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Project Datasheet</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\ADC_DelSig_v3_30.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Capacitor_v1_0</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Capacitor_v1_0\Capacitor_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_clock_v2_20</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_dma_v1_70.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_isr_v1_70</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_pins_v2_20</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\cy_vref_v1_70.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CyControlReg_v1_80.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\CyStatusReg_v1_90.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Filter_v2_30.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Gnd_v1_0</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Gnd_v1_0\Gnd_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\LED_v1_0</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\LED_v1_0\LED_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\OpAmp_v1_90</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\OpAmp_v1_90\OpAmp_v1_90.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\PGA_v2_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Potentiometer_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Resistor_v1_0</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Resistor_v1_0\Resistor_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\SwitchSPST_v1_0</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\SwitchSPST_v1_0\SwitchSPST_v1_0.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\Timer_v2_70.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\USBFS_v3_20.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\VDAC8_v1_90.pdf</v>
+<v>CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB\ZeroTerminal.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds />
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\CY8CKIT-059_CW_Decoder_USB.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\CY8CKIT-059_CW_Decoder_USB.cydsn\main.c" />
+<name v=".\CY8CKIT-059_CW_Decoder_USB.cydsn\CY8CKIT-059_CW_Decoder_USB.cydwr" />
+<name v=".\CY8CKIT-059_CW_Decoder_USB.cydsn\USBUART_FIFO.h" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="997, 699" SelectedTabbedMdiWindow="3bf7cfaf-32cc-4b57-90f3-1bcd00c6c85d"><DocumentWindow Key="E:\PSoC_Creator\CY8CKIT-059\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydsn\TopDesign\TopDesign.cysch" Guid="d59017ca-029f-4a65-9540-0f75cde18f95" /><DocumentWindow Key="E:\PSoC_Creator\CY8CKIT-059\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydsn\main.c" Guid="3bf7cfaf-32cc-4b57-90f3-1bcd00c6c85d" /><DocumentWindow Key="E:\PSoC_Creator\CY8CKIT-059\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydsn\CY8CKIT-059_CW_Decoder_USB.cydwr" Guid="24a04643-bf59-4da4-823e-86d0a8ccb723" /><DocumentWindow Key="E:\PSoC_Creator\CY8CKIT-059\CY8CKIT-059_CW_Decoder_USB\CY8CKIT-059_CW_Decoder_USB.cydsn\USBUART_FIFO.h" Guid="83a35358-f907-4b38-bca9-6fbe6a71eb2e" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="3330681a-74fe-4faa-a0ca-8db5c61945f1" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>
